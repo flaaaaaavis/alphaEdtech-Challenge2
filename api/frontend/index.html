@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="./styles/style.css">
+
+        <title>Home | Adote Fácil</title>
+    </head>
+    <body>
+        <form id="form">
+            <label for="name">Name:<input type="text" id="name"></label>
+            <label for="cpf">CPF:<input type="text" id="cpf"></label>
+            <label for="username">Username:<input type="text" id="username"></label>
+            <label for="password">Password:<input type="password" id="password"></label>
+            <div>Account type:
+                <br />
+                <label for="admin">Admin<input type="radio" id="admin" name="account-type" value="admin"></label>
+                <br />
+                <label for="ong">Ong<input type="radio" id="ong" name="account-type" value="ong"></label>
+            </div>
+            <div class="row">
+                <button id="create" type="submit">CREATE</button>
+                <button id="update" type="submit">UPDATE</button>
+            </div>
+            <div class="row">
+                <button type="submit">READ</button>
+                <button id="delete" type="submit">DELETE</button>
+            </div>
+        </form>
+
+        <script src="./scripts/script.js"></script>
+    </body>
+</html>
