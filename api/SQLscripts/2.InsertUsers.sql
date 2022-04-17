@@ -1,4 +1,7 @@
 INSERT INTO users(name, CPF, username, password) VALUES('Adelina Buenaventura', '61129413098', 'teste1', '123456');
+    INSERT INTO addresses( CEP,estado, cidade, bairro, logradouro, number) VALUES('72912288', 'GO', 'Águas Lindas de Goiás', 'Residencial Portal da Barragem', 'Quadra Quadra 3', '27');
+    INSERT INTO contacts(phone, email) VALUES('11941931525', 'ridigad378@leafzie.com');
+
 INSERT INTO users(name, CPF, username, password) VALUES('Adelino Gago', '30776493060', 'teste2', '123456');
 INSERT INTO users(name, CPF, username, password) VALUES('Adélio Lisboa', '80770645070', 'teste3', '123456');
 INSERT INTO users(name, CPF, username, password) VALUES('Adérito Bahía', '92620880009', 'teste4', '123456');

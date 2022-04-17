@@ -6,6 +6,7 @@ CREATE TABLE public.users (
 	"password" varchar(15) NOT NULL,
 	"address_id" integer,
 	"contact_id" integer,
+	"deleted" BOOLEAN NOT NULL DEFAULT 'false',
 	CONSTRAINT "users_pk" PRIMARY KEY ("user_id")
 ) WITH (
   OIDS=FALSE
@@ -15,6 +16,7 @@ CREATE TABLE public.stores (
 	"store_id" serial NOT NULL,
 	"name" varchar(30) NOT NULL,
 	"user_id" integer NOT NULL,
+	"deleted" BOOLEAN NOT NULL DEFAULT 'false',
 	CONSTRAINT "stores_pk" PRIMARY KEY ("store_id")
 ) WITH (
   OIDS=FALSE
@@ -27,6 +29,7 @@ CREATE TABLE public.products (
 	"model_id" integer NOT NULL,
 	"size_id" integer NOT NULL,
 	"store_id" integer NOT NULL,
+	"deleted" BOOLEAN NOT NULL DEFAULT 'false',
 	CONSTRAINT "products_pk" PRIMARY KEY ("product_id")
 ) WITH (
   OIDS=FALSE
@@ -38,6 +41,7 @@ CREATE TABLE public.sizes (
 	"height" integer NOT NULL,
 	"width" integer NOT NULL,
 	"depth" integer NOT NULL,
+	"deleted" BOOLEAN NOT NULL DEFAULT 'false',
 	CONSTRAINT "sizes_pk" PRIMARY KEY ("size_id")
 ) WITH (
   OIDS=FALSE
@@ -46,6 +50,8 @@ CREATE TABLE public.sizes (
 CREATE TABLE public.carts (
 	"cart_id" serial NOT NULL,
 	"user_id" integer NOT NULL,
+	"finished" BOOLEAN NOT NULL DEFAULT 'false',
+	"deleted" BOOLEAN NOT NULL DEFAULT 'false',
 	CONSTRAINT "carts_pk" PRIMARY KEY ("cart_id")
 ) WITH (
   OIDS=FALSE
@@ -54,8 +60,12 @@ CREATE TABLE public.carts (
 CREATE TABLE public.addresses (
 	"address_id" serial NOT NULL,
 	"CEP" varchar(8) NOT NULL,
+	"estado" varchar(2) NOT NULL,
+	"cidade" varchar(20) NOT NULL,
+	"bairro" varchar(30) NOT NULL,
 	"logradouro" varchar(50) NOT NULL,
 	"number" varchar(5) NOT NULL,
+	"deleted" BOOLEAN NOT NULL DEFAULT 'false',
 	CONSTRAINT "addresses_pk" PRIMARY KEY ("address_id")
 ) WITH (
   OIDS=FALSE
@@ -65,6 +75,7 @@ CREATE TABLE public.contacts (
 	"contact_id" serial NOT NULL,
 	"phone" varchar NOT NULL,
 	"email" varchar NOT NULL,
+	"deleted" BOOLEAN NOT NULL DEFAULT 'false',
 	CONSTRAINT "contacts_pk" PRIMARY KEY ("contact_id")
 ) WITH (
   OIDS=FALSE
@@ -81,6 +92,7 @@ CREATE TABLE public.cart_product (
 CREATE TABLE public.models (
 	"model_id" serial NOT NULL,
 	"name" varchar(30) NOT NULL,
+	"deleted" BOOLEAN NOT NULL DEFAULT 'false',
 	CONSTRAINT "models_pk" PRIMARY KEY ("model_id")
 ) WITH (
   OIDS=FALSE
