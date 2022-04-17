@@ -4,6 +4,7 @@ const pool = require('./database')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
+require("dotenv").config()
 
 app.use(express.static('./frontend'))
 
@@ -166,7 +167,6 @@ app.use(cors())
             }
         })
 
-
-app.listen(3000, () => 
+app.listen(3000, () =>
     console.log('App listening on port 3000')
 )
