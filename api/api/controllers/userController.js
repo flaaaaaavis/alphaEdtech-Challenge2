@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 // CREATE
-    app.post('/create', urlencodedParser, async (req, res) => {
+    app.post('/createUser', urlencodedParser, async (req, res) => {
         const userData = [req.body.name, req.body.pass, req.body.cpf, req.body.user];
         const transaction = `BEGIN TRANSACTION`;
         const addUser = `INSERT INTO users (name, password, cpf, username) VALUES ($1, $2, $3, $4)`;
@@ -34,7 +34,7 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
         }
     })
 
-    
+
 // READ
     // View all users
         app.get('/users', async (req, res) => {
