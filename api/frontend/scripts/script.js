@@ -68,7 +68,7 @@ function createAc(name, cpf, user, pass, account){
         headers: { 'Content-Type': 'application/json' }
     }
 
-    fetch( apiURL + 'createUser/', options)
+    fetch( apiURL + 'readAllUsers', options)
     .then(response => {
         if (response.status === 500) {
             return new Error('Error!')

@@ -1,11 +1,13 @@
 const express = require('express')
-const app = express()
-const pool = require('./database')
+const router = express.Router()
+
+const pool = require('../database')
 const bodyParser = require('body-parser')
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 // CREATE
-    app.post('/createProduct', urlencodedParser, async (req, res) => {
+    //createProduct
+    router.post('/createProduct', urlencodedParser, async (req, res) => {
         const productData = [req.body.name, req.body.description];
         const transaction = `BEGIN TRANSACTION`;
         const addProduct = `INSERT INTO products (name, description) VALUES ($1, $2)`;
@@ -37,8 +39,9 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
 // READ
-    // View all users
-        app.get('/products', async (req, res) => {
+    // /readAllProducts
+                // localhost:3000/readAllProducts
+        router.get('/readAllProducts', async (req, res) => {
             try {
                 const all = await pool.query("SELECT * FROM products WHERE deleted = false");
                 res.json(all.rows);
@@ -46,8 +49,9 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
                 console.error(err.message)
             }
         })
-    // By id
-        app.get('/id/', async (req, res) => {
+    // readProductById
+                // localhost:3000/readProductById?id=5   
+        router.get('/readProductById', async (req, res) => {
             const { id } = req.query;
             try {
                 const product = await pool.query("SELECT * FROM products WHERE id = $1 AND DELETED = false", [id]);
@@ -56,8 +60,9 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
                 console.error(err.message)
             }
         })
-    // Deleted
-        app.get('/deletedProducts', async (req, res) => {
+    // readDeletedProducts
+                // localhost:3000/readDeletedProducts
+        router.get('/readDeletedProducts', async (req, res) => {
             try {
                 const product = await pool.query("SELECT * FROM products WHERE deleted = true");
                 res.json(product.rows);
@@ -68,7 +73,7 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
 // UPDATE
-    app.put("/updateProduct", async (req, res) => {
+    router.put("/updateProduct", async (req, res) => {
         const { name, description, id } = req.body;
         // console.log(req.body);
         try {
@@ -84,7 +89,7 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
 // DELETE
-    app.put('/deleteProduct', async (req, res) => {
+    router.put('/deleteProduct', async (req, res) => {
         try {
             const sql = "UPDATE products SET deleted = $1 WHERE name = $2 AND description = $3;";
             const values = [true, req.body.name, req.body.description];
@@ -98,3 +103,6 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
             console.log("Ocorreu um erro na conexão.\n" + e);
         }
     })
+
+
+module.exports = router
