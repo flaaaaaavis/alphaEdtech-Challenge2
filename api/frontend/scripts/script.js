@@ -60,15 +60,15 @@ function updateAc(name, cpf, user, pass, account){
         console.log(err);
     })
 }
-function createAc(name, cpf, user, pass, account){
+function createAc(name, cpf, user, pass){
     
     const options = {
         method: 'POST',
-        body: JSON.stringify({name, cpf, user, pass, account}),
+        body: JSON.stringify({name, cpf, user, pass}),
         headers: { 'Content-Type': 'application/json' }
     }
 
-    fetch( apiURL + 'readAllUsers', options)
+    fetch( apiURL + 'createUser', options)
     .then(response => {
         if (response.status === 500) {
             return new Error('Error!')

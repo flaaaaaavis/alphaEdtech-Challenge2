@@ -59,7 +59,7 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
             console.error(err.message)
         }
     })
-// By name
+// readByName
             // localhost:3000/readUserByName?name=Alvito+Peralta
     router.get('/readUserByName', async (req, res) => {
         const { name } = req.query;
@@ -106,12 +106,12 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 // UPDATE
 router.put("/updateUser", async (req, res) => {
-    const { name, pass, cpf, user, account } = req.body;
+    const { name, pass, cpf, user} = req.body;
     // console.log(req.body);
     try {
         await pool.query(
-            "UPDATE users SET name = $1, password = $2, username = $4, admin = $5, ong = $6 WHERE cpf = $3 AND deleted = false" ,
-            [name, pass, cpf, user, admin, ong]
+            "UPDATE users SET name = $1, password = $2, username = $4 WHERE cpf = $3 AND deleted = false" ,
+            [name, pass, cpf, user]
         );
         res.status(200).send({ message: "User Updated Successfully!" });
     } catch (e) {
@@ -129,9 +129,9 @@ router.put('/deleteUser', async (req, res) => {
         await pool.query(sql, values);
         console.log("Remoção de usuário bem sucedida!");
 
-        // const sqlResult = "SELECT * FROM users WHERE deleted = $1;";
-        // const valuesResult = [false];
-        // const result = await pool.query(sqlResult, valuesResult);
+        const sqlResult = "SELECT * FROM users WHERE deleted = $1;";
+        const valuesResult = [false];
+        const result = await pool.query(sqlResult, valuesResult);
     } catch(e) {
         console.log("Ocorreu um erro na conexão.\n" + e);
     }
