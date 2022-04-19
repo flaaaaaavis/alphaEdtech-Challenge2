@@ -5,6 +5,9 @@ require('dotenv').config()
 
 const userRoutes = require('./controllers/userController')
 const productRoutes = require('./controllers/productController')
+const addressRoutes = require('./controllers/addressController')
+const contactRoutes = require('./controllers/contactController')
+const storeRoutes = require('./controllers/storeController')
 
 app.use(express.static('./frontend'))
 
@@ -14,6 +17,9 @@ app.use(cors())
 
 app.use(userRoutes)
 app.use(productRoutes)
+app.use(addressRoutes)
+app.use(contactRoutes)
+app.use(storeRoutes)
 
 app.listen(3000, () =>
     console.log('App listening on port 3000')

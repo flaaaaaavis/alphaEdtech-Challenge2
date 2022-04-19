@@ -6,11 +6,11 @@ const bodyParser = require('body-parser')
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 // CREATE
-    // createProduct
-    router.post('/createProduct', urlencodedParser, async (req, res) => {
-        const productData = [req.body.name, req.body.description, req.body.model];
+    // createStore
+    router.post('/createStore', urlencodedParser, async (req, res) => {
+        const productData = [req.body.name, req.body.userId];
         const transaction = `BEGIN TRANSACTION`;
-        const addProduct = `INSERT INTO products (name, description, model) VALUES ($1, $2, $3)`;
+        const addProduct = `INSERT INTO stores (name, user_id) VALUES ($1, $2)`;
         try {
             await pool.query(transaction);
             await pool.query(addProduct, productData);
@@ -23,11 +23,11 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
 // READ
-    // readAllProducts
-                // localhost:3000/readAllProducts
-        router.get('/readAllProducts', async (req, res) => {
+    // readAllStores
+                // localhost:3000/readAllStores
+        router.get('/readAllStores', async (req, res) => {
             try {
-                const all = await pool.query("SELECT * FROM products WHERE deleted = false");
+                const all = await pool.query("SELECT * FROM stores WHERE deleted = false");
                 res.json(all.rows);
             } catch (err) {
                 console.error(err.message)
@@ -44,22 +44,22 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
                 console.log(err)
             }
         })
-    // readProductById
-                // localhost:3000/readProductById?id=1
-        router.get('/readProductById', async (req, res) => {
+    // readStoreById
+                // localhost:3000/readStoreById?id=1
+        router.get('/readStoreById', async (req, res) => {
             const { id } = req.query;
             try {
-                const product = await pool.query("SELECT * FROM products WHERE product_id = $1 AND DELETED = false", [id]);
+                const product = await pool.query("SELECT * FROM stores WHERE store_id = $1 AND DELETED = false", [id]);
                 res.json(product.rows);
             } catch (err) {
                 console.error(err.message)
             }
         })
-    // readDeletedProducts
-                // localhost:3000/readDeletedProducts
-        router.get('/readDeletedProducts', async (req, res) => {
+    // readDeletedStores
+                // localhost:3000/readDeletedStores
+        router.get('/readDeletedStores', async (req, res) => {
             try {
-                const product = await pool.query("SELECT * FROM products WHERE deleted = true");
+                const product = await pool.query("SELECT * FROM stores WHERE deleted = true");
                 res.json(product.rows);
             } catch (err) {
                 console.error(err.message)
@@ -68,13 +68,13 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
 // UPDATE
-    router.put("/updateProduct", async (req, res) => {
-        const { name, description, model, id } = req.body;
+    router.put("/updateStore", async (req, res) => {
+        const { name, id } = req.body;
         // console.log(req.body);
         try {
             await pool.query(
-                "UPDATE products SET name = $1, description = $2, model = $3 WHERE product_id = $3 AND deleted = false" ,
-                [name, description, model, id]
+                "UPDATE stores SET name = $1 WHERE store_id = $2 AND deleted = false" ,
+                [name, id]
             );
             res.status(200).send({ message: "User Updated Successfully!" });
         } catch (e) {
@@ -84,14 +84,14 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
 // DELETE
-    router.put('/deleteProduct', async (req, res) => {
+    router.put('/deleteStore', async (req, res) => {
         try {
-            const sql = "UPDATE products SET deleted = $1 WHERE product_id = $2;";
+            const sql = "UPDATE stores SET deleted = $1 WHERE store_id = $2;";
             const values = [true, req.body.id];
             await pool.query(sql, values);
-            console.log("Remoção de usuário bem sucedida!");
+            res.status(200).send({ message: "Deleted Successfully!" });
 
-            const sqlResult = "SELECT * FROM products WHERE deleted = $1;";
+            const sqlResult = "SELECT * FROM stores WHERE deleted = $1;";
             const valuesResult = [false];
             await pool.query(sqlResult, valuesResult);
         } catch(e) {

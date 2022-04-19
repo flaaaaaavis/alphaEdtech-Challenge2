@@ -26,7 +26,7 @@ CREATE TABLE public.products (
 	"product_id" serial NOT NULL,
 	"name" varchar(20) NOT NULL,
 	"description" TEXT NOT NULL,
-	"model_id" integer,
+	"model" varchar(30) NOT NULL,
 	"size_id" integer,
 	"store_id" integer,
 	"deleted" BOOLEAN NOT NULL DEFAULT 'false',
@@ -59,10 +59,10 @@ CREATE TABLE public.carts (
 
 CREATE TABLE public.addresses (
 	"address_id" serial NOT NULL,
-	"CEP" varchar(8) NOT NULL,
+	"cep" varchar(8) NOT NULL,
 	"estado" varchar(2) NOT NULL,
-	"cidade" varchar(20) NOT NULL,
-	"bairro" varchar(30) NOT NULL,
+	"cidade" varchar(40) NOT NULL,
+	"bairro" varchar(40) NOT NULL,
 	"logradouro" varchar(50) NOT NULL,
 	"number" varchar(5) NOT NULL,
 	"deleted" BOOLEAN NOT NULL DEFAULT 'false',
@@ -73,6 +73,7 @@ CREATE TABLE public.addresses (
 
 CREATE TABLE public.contacts (
 	"contact_id" serial NOT NULL,
+	"ddd" numeric(2) NOT NULL,
 	"phone" varchar NOT NULL,
 	"email" varchar NOT NULL,
 	"deleted" BOOLEAN NOT NULL DEFAULT 'false',
