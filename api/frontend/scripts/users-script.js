@@ -1,5 +1,8 @@
 const apiURL = 'http://localhost:3000/';
 
+/**
+ * função para chamar o endpoint para listar todos os usuarios
+ */
 function readUsers(){
     fetch(apiURL+'readAllUsers', {
         method: "get",
@@ -9,13 +12,39 @@ function readUsers(){
             const listUsuarios = document.getElementById("lista-usuarios")
             users.map(user => {
                 const li = document.createElement("li")
-                li.innerHTML = `${user.name} - ${user.cpf}`
+                li.innerHTML = `${user.name} - ${user.username} - ${user.cpf}`
                 listUsuarios.appendChild(li)
             })
         })
     });
 }
 
+/**
+ * função para chamar o endpoint para buscar usuarios
+ * a busca vai ser feita por nome ou username ou cpf
+ */
+function buscar(){
+    const buscar = document.getElementById("buscar")
+    fetch(`${apiURL}find-user?name=${buscar.value}`, {
+        method: "get",
+        headers: { 'Content-Type': 'application/json' }
+    }).then(response => {
+        console.log(response)
+        response.json().then(users => {
+            const listUsuarios = document.getElementById("lista-usuarios")
+            listUsuarios.innerHTML = "";
+            users.map(user => {
+                const li = document.createElement("li")
+                li.innerHTML = `${user.name} - ${user.username} - ${user.cpf}`
+                listUsuarios.appendChild(li)
+            })
+        })
+    });
+}
+
+/**
+ * função para chamar o endpoint para salvar usuarios
+ */
 function saveUser(){
     const name = document.getElementById("nome")
     const cpf = document.getElementById("cpf")
