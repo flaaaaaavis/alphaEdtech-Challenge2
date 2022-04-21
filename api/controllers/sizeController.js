@@ -1,13 +1,7 @@
-const express = require('express')
-const router = express.Router()
-
 const pool = require('../database')
-const bodyParser = require('body-parser')
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-// CREATE
-    // createSize
-    router.post('/createSize', urlencodedParser, async (req, res) => {
+class size {
+    async createSize(req, res) {
         const productData = [req.body.size, req.body.height, req.body.width, req.body.depth];
         const transaction = `BEGIN TRANSACTION`;
         const addProduct = `INSERT INTO sizes (size, height, width, depth) VALUES ($1, $2, $3, $4)`;
@@ -19,45 +13,33 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
         } catch (e) {
             console.error(e)
         }
-    })
-
-
-// READ
-    // readAllSizes
-                // localhost:3000/readAllSizes
-        router.get('/readAllSizes', async (req, res) => {
-            try {
-                const all = await pool.query("SELECT * FROM sizes WHERE deleted = false");
-                res.json(all.rows);
-            } catch (err) {
-                console.error(err.message)
-            }
-        })
-    // readSizeById
-                // localhost:3000/readSizeById?id=1
-        router.get('/readSizeById', async (req, res) => {
-            const { id } = req.query;
-            try {
-                const product = await pool.query("SELECT * FROM sizes WHERE size_id = $1 AND DELETED = false", [id]);
-                res.json(product.rows);
-            } catch (err) {
-                console.error(err.message)
-            }
-        })
-    // readDeletedSizes
-                // localhost:3000/readDeletedSizes
-        router.get('/readDeletedSizes', async (req, res) => {
-            try {
-                const product = await pool.query("SELECT * FROM sizes WHERE deleted = true");
-                res.json(product.rows);
-            } catch (err) {
-                console.error(err.message)
-            }
-        })
-
-
-// UPDATE
-    router.put("/updateSize", async (req, res) => {
+    }
+    async readAllSizes(req, res) {
+        try {
+            const all = await pool.query("SELECT * FROM sizes WHERE deleted = false");
+            res.json(all.rows);
+        } catch (err) {
+            console.error(err.message)
+        }
+    }
+    async readSizeById(req, res) {
+        const { id } = req.query;
+        try {
+            const product = await pool.query("SELECT * FROM sizes WHERE size_id = $1 AND DELETED = false", [id]);
+            res.json(product.rows);
+        } catch (err) {
+            console.error(err.message)
+        }
+    }
+    async readDeletedSizes(req, res) {
+        try {
+            const product = await pool.query("SELECT * FROM sizes WHERE deleted = true");
+            res.json(product.rows);
+        } catch (err) {
+            console.error(err.message)
+        }
+    }
+    async updateSize(req, res) {
         const { size, height, width, depth, id } = req.body;
         // console.log(req.body);
         try {
@@ -69,11 +51,8 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
         } catch (e) {
             console.log("Ocorreu um erro na conexão.\n" + e);
         }
-    })
-
-
-// DELETE
-    router.put('/deleteSize', async (req, res) => {
+    }
+    async deleteSize(req, res) {
         try {
             const sql = "UPDATE sizes SET deleted = $1 WHERE size_id = $2;";
             const values = [true, req.body.id];
@@ -86,7 +65,7 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
         } catch(e) {
             console.log("Ocorreu um erro na conexão.\n" + e);
         }
-    })
+    }
+}
 
-
-module.exports = router
+module.exports = size

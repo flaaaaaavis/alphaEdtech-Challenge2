@@ -1,13 +1,7 @@
-const express = require('express')
-const router = express.Router()
-
 const pool = require('../database')
-const bodyParser = require('body-parser')
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-// CREATE
-    // createContact
-    router.post('/createContact', urlencodedParser, async (req, res) => {
+class contact {
+    async createContact(req, res) {
         const productData = [req.body.ddd, req.body.phone, req.body.email];
         const transaction = `BEGIN TRANSACTION`;
         const addProduct = `INSERT INTO contacts (ddd, phone, email) VALUES ($1, $2, $3)`;
@@ -19,45 +13,33 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
         } catch (e) {
             console.error(e)
         }
-    })
-
-
-// READ
-    // readAllContacts
-                // localhost:3000/readAllContacts
-        router.get('/readAllContacts', async (req, res) => {
-            try {
-                const all = await pool.query("SELECT * FROM contacts WHERE deleted = false");
-                res.json(all.rows);
-            } catch (err) {
-                console.error(err.message)
-            }
-        })
-    // readProductById
-                // localhost:3000/readContactById?id=1
-        router.get('/readContactById', async (req, res) => {
-            const { id } = req.query;
-            try {
-                const product = await pool.query("SELECT * FROM contacts WHERE contact_id = $1 AND DELETED = false", [id]);
-                res.json(product.rows);
-            } catch (err) {
-                console.error(err.message)
-            }
-        })
-    // readDeletedProducts
-                // localhost:3000/readDeletedContacts
-        router.get('/readDeletedContacts', async (req, res) => {
-            try {
-                const product = await pool.query("SELECT * FROM contacts WHERE deleted = true");
-                res.json(product.rows);
-            } catch (err) {
-                console.error(err.message)
-            }
-        })
-
-
-// UPDATE
-    router.put("/updateContact", async (req, res) => {
+    }
+    async readAllContacts(req, res) {
+        try {
+            const all = await pool.query("SELECT * FROM contacts WHERE deleted = false");
+            res.json(all.rows);
+        } catch (err) {
+            console.error(err.message)
+        }
+    }
+    async readContactById(req, res) {
+        const { id } = req.query;
+        try {
+            const product = await pool.query("SELECT * FROM contacts WHERE contact_id = $1 AND DELETED = false", [id]);
+            res.json(product.rows);
+        } catch (err) {
+            console.error(err.message)
+        }
+    }
+    async readDeletedContacts(req, res) {
+        try {
+            const product = await pool.query("SELECT * FROM contacts WHERE deleted = true");
+            res.json(product.rows);
+        } catch (err) {
+            console.error(err.message)
+        }
+    }
+    async updateContact(req, res) {
         const { ddd, phone, email, id } = req.body;
         // console.log(req.body);
         try {
@@ -69,11 +51,8 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
         } catch (e) {
             console.log("Ocorreu um erro na conexão.\n" + e);
         }
-    })
-
-
-// DELETE
-    router.put('/deleteContact', async (req, res) => {
+    }
+    async deleteContact(req, res) {
         try {
             const sql = "UPDATE contacts SET deleted = $1 WHERE contact_id = $2;";
             const values = [true, req.body.id];
@@ -86,6 +65,7 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
         } catch(e) {
             console.log("Ocorreu um erro na conexão.\n" + e);
         }
-    })
+    }
+}
 
-module.exports = router
+module.exports = contact;

@@ -26,7 +26,7 @@ function readUsers(){
  */
 function buscar(){
     const buscar = document.getElementById("buscar")
-    fetch(`${apiURL}find-user?name=${buscar.value}`, {
+    fetch(`${apiURL}findUser?name=${buscar.value}`, {
         method: "get",
         headers: { 'Content-Type': 'application/json' }
     }).then(response => {

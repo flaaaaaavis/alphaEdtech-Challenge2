@@ -1,15 +1,7 @@
-const express = require('express')
-const router = express.Router()
-
 const pool = require('../database')
-const bodyParser = require('body-parser')
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-// CREATE
-    // createUser
-    // localhost:3000/createUser/20
-    // req.param ou req.query => dentro da url
-    router.post('/createUser', urlencodedParser, async (req, res) => {
+class user {
+    async createUser(req, res) {
         const userData = [req.body.name, req.body.pass, req.body.cpf, req.body.user];
         const transaction = `BEGIN TRANSACTION`;
         const addUser = `INSERT INTO users (name, password, cpf, username) VALUES ($1, $2, $3, $4)`;
@@ -36,23 +28,16 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
                 res.sendStatus(201);
             } 
         }
-    })
-
-
-// READ
-// readAllUsers
-            // localhost:3000/readAllUsers
-    router.get('/readAllUsers', async (req, res) => {
+    }
+    async readAllUsers(req, res) {
         try {
             const allUsers = await pool.query("SELECT * FROM users WHERE deleted = false");
             res.json(allUsers.rows);
         } catch (err) {
             console.error(err.message)
         }
-    })
-// readById
-            // localhost:3000/readUserById?id=5
-    router.get('/readUserById', async (req, res) => {
+    }
+    async readUserById(req, res) {
         const { id } = req.query;
         try {
             const user = await pool.query("SELECT * FROM users WHERE user_id = $1 AND DELETED = false", [id]);
@@ -60,14 +45,8 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
         } catch (err) {
             console.error(err.message)
         }
-    })
-// readByName
-            // localhost:3000/readUserByName?name=Alvito+Peralta
-    /**
-     * rota vai buscar os usuarios por nome ou username ou cpf
-     * a busca vai ser feita utilizando ilike para pegar partes do termo a ser buscado
-     */
-    router.get('/find-user', async (req, res) => {
+    }
+    async findUser(req, res) {
         const { name } = req.query;
         try {
             const condicao = `name ilike '%${name}%' or username ilike '%${name}%' or cpf ilike '%${name}%'`;
@@ -77,10 +56,8 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
         } catch (err) {
             console.error(err.message)
         }
-    })
-// By CPF
-            // localhost:3000/readUserByCPF?cpf=81948935007
-    router.get('/readUserByCPF', async (req, res) => {
+    }
+    async readUserByCPF(req, res) {
         const { cpf } = req.query;
         try {
             const user = await pool.query("SELECT * FROM users WHERE cpf = $1 AND deleted = false", [cpf]);
@@ -88,10 +65,8 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
         } catch (err) {
             console.error(err.message)
         }
-    })
-// By username
-            // localhost:3000/readUserByUsername?username=teste14
-    router.get('/readUserByUsername', async (req, res) => {
+    }
+    async readUserByUsername(req, res) {
         const { username } = req.query;
         try {
             const user = await pool.query("SELECT * FROM users WHERE username = $1 AND deleted = false", [username]);
@@ -99,51 +74,43 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
         } catch (err) {
             console.error(err.message)
         }
-    })
-// Deleted
-            // localhost:3000/readDeletedUsers
-    router.get('/readDeletedUsers', async (req, res) => {
+    }
+    async readDeletedUsers(req, res) {
         try {
             const user = await pool.query("SELECT * FROM users WHERE deleted = true");
             res.json(user.rows);
         } catch (err) {
             console.error(err.message)
         }
-    })
-
-
-// UPDATE
-router.put("/updateUser", async (req, res) => {
-    const { name, pass, cpf, user} = req.body;
-    // console.log(req.body);
-    try {
-        await pool.query(
-            "UPDATE users SET name = $1, password = $2, username = $4 WHERE cpf = $3 AND deleted = false" ,
-            [name, pass, cpf, user]
-        );
-        res.status(200).send({ message: "User Updated Successfully!" });
-    } catch (e) {
-        console.log("Ocorreu um erro na conexão.\n" + e);
     }
-})
-
-
-// DELETE
-router.put('/deleteUser', async (req, res) => {
-    try {
-        // await pool.connect();
-        const sql = "UPDATE users SET deleted = $1 WHERE username = $2 AND password = $3;";
-        const values = [true, req.body.user, req.body.pass];
-        await pool.query(sql, values);
-        console.log("Remoção de usuário bem sucedida!");
-
-        const sqlResult = "SELECT * FROM users WHERE deleted = $1;";
-        const valuesResult = [false];
-        const result = await pool.query(sqlResult, valuesResult);
-    } catch(e) {
-        console.log("Ocorreu um erro na conexão.\n" + e);
+    async updateUser(req, res) {
+        const { name, pass, cpf, user} = req.body;
+        // console.log(req.body);
+        try {
+            await pool.query(
+                "UPDATE users SET name = $1, password = $2, username = $4 WHERE cpf = $3 AND deleted = false" ,
+                [name, pass, cpf, user]
+            );
+            res.status(200).send({ message: "User Updated Successfully!" });
+        } catch (e) {
+            console.log("Ocorreu um erro na conexão.\n" + e);
+        }
     }
-})
+    async deleteUser(req, res) {
+        try {
+            // await pool.connect();
+            const sql = "UPDATE users SET deleted = $1 WHERE username = $2 AND password = $3;";
+            const values = [true, req.body.user, req.body.pass];
+            await pool.query(sql, values);
+            console.log("Remoção de usuário bem sucedida!");
 
+            const sqlResult = "SELECT * FROM users WHERE deleted = $1;";
+            const valuesResult = [false];
+            const result = await pool.query(sqlResult, valuesResult);
+        } catch(e) {
+            console.log("Ocorreu um erro na conexão.\n" + e);
+        }
+    }
+}
 
-module.exports = router
+module.exports = user
