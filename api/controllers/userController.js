@@ -63,11 +63,17 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
     })
 // readByName
             // localhost:3000/readUserByName?name=Alvito+Peralta
-    router.get('/readUserByName', async (req, res) => {
+    /**
+     * rota vai buscar os usuarios por nome ou username ou cpf
+     * a busca vai ser feita utilizando ilike para pegar partes do termo a ser buscado
+     */
+    router.get('/find-user', async (req, res) => {
         const { name } = req.query;
         try {
-            const user = await pool.query("SELECT * FROM users WHERE name = $1 AND deleted = false", [name]);
-            res.json(user.rows[0]);
+            const condicao = `name ilike '%${name}%' or username ilike '%${name}%' or cpf ilike '%${name}%'`;
+            const query = `SELECT * FROM users WHERE ${condicao} AND deleted = false`;
+            const user = await pool.query(query);
+            res.json(user.rows);
         } catch (err) {
             console.error(err.message)
         }
