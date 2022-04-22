@@ -125,6 +125,12 @@ app.use(cors())
             productControl.deleteProduct(req, res)
         })
 
+// Session
+    // Login
+        app.post('/login', (req, res) => {
+            sessionControl.login(req, res)
+        })
+
 // Size
     // CREATE
         // createSize

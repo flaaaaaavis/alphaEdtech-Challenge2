@@ -4,28 +4,29 @@ const bcrypt = require('bcrypt')
 
 class session {
     async login(req, res) {
-        const { username, password } = req.body;
-
-        
-
-        bcrypt.compare(password, hash).then(function(result) {
-            // result == true
-        });
-
-
+        const { email, password } = req.body;
         try {
-            const user = await pool.query(`SELECT * FROM users WHERE username = $1`, [username]);
-            res.json(user.rows[0]);
-
-            if(username === res.body.username && password === res.body.password) {
-                let id = res.body.user_id;
-                const token = jwt.sign({id}, SECRET, {expiresIn: 300});
-                res.json({auth: true, token});
-            }
+            await pool.query(`BEGIN TRANSACTION;`);
+            const dbEmail = await pool.query(`SELECT * FROM contacts WHERE email = '${email}';`);
+            if (email == dbEmail.rows[0].email) {
+                const dbData = await pool.query(`
+                    SELECT contacts.email, users.password
+                    FROM users
+                    INNER JOIN contacts ON users.contact_id=contacts.contact_id;
+                `);
+                bcrypt.compare(password, dbData.rows[0].password).then((result) => { 
+                    if(result == true) {
+                        res.status(200).send(result);
+                    } else {
+                        res.status(401).send( { message: 'Wrong password'} )
+                    }
+                });
+            } else res.send( { message: 'User not found'} )
+            await pool.query(`COMMIT;`);
         } catch (err) {
-            console.error(err.message);
-            res.status(401).end();
-        } 
+            res.status(401).send( { message: 'User not found'} ).end();
+            await pool.query(`COMMIT;`);
+        }   
     }
 }
 
