@@ -2,31 +2,39 @@ const pool = require('../database')
 
 class user {
     async createUser(req, res) {
-        const userData = [req.body.name, req.body.pass, req.body.cpf, req.body.user];
-        const transaction = `BEGIN TRANSACTION`;
-        const addUser = `INSERT INTO users (name, password, cpf, username) VALUES ($1, $2, $3, $4)`;
+        const { name, cpf, birthdate, email, password, ddd, phone } = req.body;
+        let contactId;
+        const transaction = `BEGIN TRANSACTION;`;
+        const commit = `COMMIT;`
         try {
-            // console.log("Entrou no Try");
             await pool.query(transaction);
-            await pool.query(addUser, userData);
-            await pool.query(`COMMIT`);
-            res.sendStatus(201)
+            await pool.query(`INSERT INTO contacts (email, ddd, phone) VALUES ('${email}', ${ddd}, ${phone});`);
+            await pool.query(commit);
+            const selected = await pool.query(`SELECT contact_id FROM contacts WHERE email = '${email}';`);
+            contactId = selected.rows[0].contact_id;
+            try {
+                await pool.query(transaction);
+                await pool.query(`INSERT INTO users (name, cpf, birthdate, contact_id, password) VALUES ('${name}', '${cpf}', '${birthdate}', ${contactId}, '${password}');`);
+                await pool.query(commit);
+                res.status(201).send({ message: "Created" });
+            } catch (e) {
+                res.send(e)
+            }
         } catch (e) {
-            // console.log("Catch")
-            const user = await pool.query(`SELECT id FROM users WHERE deleted = true AND cpf = '${req.body.cpf}'`);
-            // console.log("Catch2")
-            const logDeletion = `UPDATE users SET name = $1, password = $2, cpf = $3, username = $4 WHERE id = '${user.rows[0].id}'`;
+            // const user = await pool.query(`SELECT id FROM users WHERE deleted = true AND cpf = '${req.body.cpf}'`);
+            // const logDeletion = `UPDATE users SET name = $1, password = $2, cpf = $3, username = $4 WHERE id = '${user.rows[0].id}'`;
             
-            if (typeof user.rows[0] === 'undefined') {
-                await pool.query(`ROLLBACK`);
-                if(e.code == "23505") res.sendStatus(200).send("Nome de usuário ou cpf ja existente");
-                console.log(e);
-                res.sendStatus(500).send("erro");
-            } else{
-                await pool.query(logDeletion, userData);
-                await pool.query(`COMMIT`);
-                res.sendStatus(201);
-            } 
+            // if (typeof user.rows[0] === 'undefined') {
+            //     await pool.query(`ROLLBACK`);
+            //     if(e.code == "23505") res.sendStatus(200).send("Nome de usuário ou cpf ja existente");
+            //     console.log(e);
+            //     res.sendStatus(500).send("erro");
+            // } else{
+            //     await pool.query(logDeletion, userData);
+            //     await pool.query(`COMMIT`);
+            //     res.sendStatus(201);
+            // } 
+            res.send(e)
         }
     }
     async readAllUsers(req, res) {
@@ -47,6 +55,10 @@ class user {
         }
     }
     async findUser(req, res) {
+        /*
+        * rota vai buscar os usuarios por nome ou username ou cpf
+        * a busca vai ser feita utilizando ilike para pegar partes do termo a ser buscado
+        */
         const { name } = req.query;
         try {
             const condicao = `name ilike '%${name}%' or username ilike '%${name}%' or cpf ilike '%${name}%'`;

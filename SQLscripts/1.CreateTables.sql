@@ -1,13 +1,23 @@
 CREATE TABLE public.users (
 	"user_id" serial NOT NULL,
+	"token_id" integer,
 	"name" varchar(50) NOT NULL,
 	"cpf" varchar(11) NOT NULL UNIQUE,
-	"username" varchar(20) NOT NULL UNIQUE,
+	"birthdate" date NOT NULL,
+	"contact_id" integer NOT NULL,
 	"password" varchar(15) NOT NULL,
 	"address_id" integer,
-	"contact_id" integer,
 	"deleted" BOOLEAN NOT NULL DEFAULT 'false',
 	CONSTRAINT "users_pk" PRIMARY KEY ("user_id")
+) WITH (
+  OIDS=FALSE
+);
+
+CREATE TABLE public.token (
+	"token_id" serial NOT NULL,
+	"code" text NOT NULL,
+	"due_date" date NOT NULL,
+	CONSTRAINT "token_pk" PRIMARY KEY ("token_id")
 ) WITH (
   OIDS=FALSE
 );
@@ -25,7 +35,7 @@ CREATE TABLE public.stores (
 CREATE TABLE public.products (
 	"product_id" serial NOT NULL,
 	"name" varchar(20) NOT NULL,
-	"description" TEXT NOT NULL,
+	"description" text NOT NULL,
 	"model" varchar(30) NOT NULL,
 	"size_id" integer,
 	"store_id" integer,
@@ -73,9 +83,9 @@ CREATE TABLE public.addresses (
 
 CREATE TABLE public.contacts (
 	"contact_id" serial NOT NULL,
-	"ddd" numeric(2) NOT NULL,
-	"phone" varchar NOT NULL,
-	"email" varchar NOT NULL,
+	"email" varchar NOT NULL UNIQUE,
+	"ddd" varchar(2) NOT NULL,
+	"phone" varchar(9) NOT NULL,
 	"deleted" BOOLEAN NOT NULL DEFAULT 'false',
 	CONSTRAINT "contacts_pk" PRIMARY KEY ("contact_id")
 ) WITH (
@@ -90,21 +100,11 @@ CREATE TABLE public.cart_product (
   OIDS=FALSE
 );
 
-CREATE TABLE public.models (
-	"model_id" serial NOT NULL,
-	"name" varchar(30) NOT NULL,
-	"deleted" BOOLEAN NOT NULL DEFAULT 'false',
-	CONSTRAINT "models_pk" PRIMARY KEY ("model_id")
-) WITH (
-  OIDS=FALSE
-);
-
 ALTER TABLE "users" ADD CONSTRAINT "users_fk0" FOREIGN KEY ("address_id") REFERENCES "addresses"("address_id");
 ALTER TABLE "users" ADD CONSTRAINT "users_fk1" FOREIGN KEY ("contact_id") REFERENCES "contacts"("contact_id");
 
 ALTER TABLE "stores" ADD CONSTRAINT "stores_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("user_id");
 
-ALTER TABLE "products" ADD CONSTRAINT "products_fk0" FOREIGN KEY ("model_id") REFERENCES "models"("model_id");
 ALTER TABLE "products" ADD CONSTRAINT "products_fk1" FOREIGN KEY ("size_id") REFERENCES "sizes"("size_id");
 ALTER TABLE "products" ADD CONSTRAINT "products_fk2" FOREIGN KEY ("store_id") REFERENCES "stores"("store_id");
 
