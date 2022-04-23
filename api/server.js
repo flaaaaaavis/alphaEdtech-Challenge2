@@ -21,11 +21,11 @@ const storeControl = new store()
 const user = require('./controllers/userController')
 const userControl = new user()
 
-
 app.use(express.static('./frontend'))
 app.use(cookieParser());
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(sessionControl.validateToken)
 
 app.use(cors())
 
@@ -126,6 +126,8 @@ app.use(cors())
             productControl.deleteProduct(req, res)
         })
 
+// sessionControl.validateToken,
+
 // Session
     // Login
         app.post('/login', (req, res) => {
@@ -135,8 +137,8 @@ app.use(cors())
 // Size
     // CREATE
         // createSize
-            app.post('/createSize', (req, res) => {
-                sizeControl.createSize(req, res)
+            app.post('/createSize', (req, res, next) => {
+                sizeControl.createSize(req, res, next)
             })
         // READ
             // readAllSizes

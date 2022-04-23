@@ -22,14 +22,11 @@ class user {
                 await pool.query(`INSERT INTO contacts (email, ddd, phone) VALUES ('${email}', ${ddd}, ${phone});`);
                 const selected = await pool.query(`SELECT contact_id FROM contacts WHERE email = '${email}';`);
                 contactId = selected.rows[0].contact_id;
-                try {
-                    await pool.query(`INSERT INTO users (name, cpf, birthdate, contact_id, password) VALUES ('${name}', '${cpf}', '${birthdate}', ${contactId}, '${hashedPass}');`);
-                    // res.send("eita");
-                    await pool.query(commit);
-                    res.status(201).send({ message: "Created" });
-                } catch (e) {
-                    res.send(e)
-                }
+
+                await pool.query(`INSERT INTO users (name, cpf, birthdate, contact_id, password) VALUES ('${name}', '${cpf}', '${birthdate}', ${contactId}, '${hashedPass}');`);
+                await pool.query(commit);
+                res.status(201).send({ message: "Created" });
+                    
             } catch (e) {
                 res.send(e)
             }
