@@ -77,6 +77,9 @@ function saveUser(){
     const cpf = document.getElementById("cpf")
     const email = document.getElementById("email")
     const senha = document.getElementById("senha")
+    const dtnasc = document.getElementById("dtnasc")
+    const ddd = document.getElementById("ddd")
+    const phone = document.getElementById("phone")
 
     if (email.value === "" || cpf.value === "" || name.value === "" || senha.value === "") {
         alert("Preencha todos os campos")
@@ -87,21 +90,28 @@ function saveUser(){
         alert("Email ou CPF inválidos")
         return
     }
+
     fetch(apiURL+'createUser', {
         method: "post",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             name: name.value,
             cpf: cpf.value,
-            user: username.value,
-            pass: senha.value
+            email: email.value,
+            password: senha.value,
+            phone: phone.value,
+            ddd: ddd.value,
+            birthdate: dtnasc.value
         })
     }).then(response => {
         if (response.status === 201) {
             name.value = ""
             cpf.value = ""
-            username.value = ""
+            email.value = ""
             senha.value = ""
+            ddd.value = ""
+            dtnasc.value = ""
+            phone.value = ""
             alert("Usuário salvo com sucesso.")
         }
     });
