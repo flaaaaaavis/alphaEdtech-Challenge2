@@ -1,6 +1,21 @@
 const pool = require('../database')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
+require('dotenv').config()
+
+function validateToken(cookieToken) {
+    jwt.verify(cookieToken, process.env.SECRET, function(err, decoded) {
+        console.log(decoded.foo) // bar
+    });
+}
+
+function createToken(_token) {
+    const token = jwt.sign({ _token }, process.env.SECRET, { auth: true,
+      expiresIn: 86400,
+    });
+  
+    return { token };
+};
 
 class session {
     async login(req, res) {
@@ -16,6 +31,10 @@ class session {
                 `);
                 bcrypt.compare(password, dbData.rows[0].password).then((result) => { 
                     if(result == true) {
+                        // sign with RSA SHA256
+                        let privateKey = fs.readFileSync('private.key');
+                        let token = jwt.sign({ foo: 'bar' }, privateKey, { algorithm: 'RS256' });
+                        res.setHeader('Set-Cookie','visited=true; Max-Age=3000; HttpOnly, Secure');
                         res.status(200).send(result);
                     } else {
                         res.status(401).send( { message: 'Wrong password'} )

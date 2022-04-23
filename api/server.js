@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
+const cookieParser = require('cookie-parser');
 const cors = require('cors')
 require('dotenv').config()
 
@@ -22,7 +23,7 @@ const userControl = new user()
 
 
 app.use(express.static('./frontend'))
-
+app.use(cookieParser());
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
