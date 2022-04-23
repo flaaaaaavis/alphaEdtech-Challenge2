@@ -22,7 +22,7 @@ CREATE TABLE public.users (
 	"cpf" varchar(11) NOT NULL UNIQUE,
 	"birthdate" date NOT NULL,
 	"contact_id" integer NOT NULL,
-	"password" varchar(15) NOT NULL,
+	"password" text NOT NULL,
 	"address_id" integer,
 	"deleted" BOOLEAN NOT NULL DEFAULT 'false',
 	CONSTRAINT "users_pk" PRIMARY KEY ("user_id")
