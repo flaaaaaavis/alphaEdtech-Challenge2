@@ -21,7 +21,7 @@ const user = require('./controllers/userController')
 const userControl = new user()
 
 
-app.use(express.static('./frontend'))
+app.use(express.static('./production-frontend'))
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
