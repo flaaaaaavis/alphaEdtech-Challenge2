@@ -21,14 +21,13 @@ const storeControl = new store()
 const user = require('./controllers/userController')
 const userControl = new user()
 
-app.use(express.static('./production-frontend'))
+app.use(express.static('./frontend'))
 
-app.use(cookieParser());
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(sessionControl.validateToken)
-
-app.use(cors())
+// app.use(cors())
+app.use(cookieParser())
 
 // Address
     // CREATE
