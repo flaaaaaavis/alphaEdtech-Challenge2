@@ -7,10 +7,23 @@
 
         <link rel="stylesheet" href="styles/style.css">
 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <title>de Saco Cheio</title>
     </head>
     <body>
         <div class="principal">
+            <div id="topo">
+                <img src="imgs/logo.png" class="logo" />
+
+                <div id="buscar"><input type="text" placeholder="Pesquisar"></div>
+
+                <p>Tem dúvidas?<br><span id="span-atendimento">Atendimento</span></p>
+
+                <p><span id="span-entre">Entre</span> ou<br><span id="span-cadastre">Cadastre-se</span></p>
+
+                <p id="p-carrinho">Carrinho<br><span id="span-carrinho">Carrinho vazio</span></p>
+            </div>
+
             <header class="header">
                 <a href="#">Todas categorias</a>
                 <a href="#">Sacolas plásticas</a>
@@ -19,8 +32,33 @@
                 <a href="#">Sacoals brancas</a>
             </header>
 
+            <div class="carousel-imagens">
+                <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                      <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+                      <li data-target="#carouselIndicators" data-slide-to="1"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img class="d-block w-100" src="./imgs/img-1.jpg">
+                      </div>
+                      <div class="carousel-item">
+                        <img class="d-block w-100" src="./imgs/img-2.jpg">
+                      </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Anterior</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Próximo</span>
+                    </a>
+                </div>
+            </div>
+
             <div id="promo-banner">
-                <p>Aproveite nossas ofertas e PROMOÇÕES, produtos com até 50% OFF</p>
+                <p>Aproveite nossas ofertas e PROMOÇÕES, produtos com até 50% OFF <a href="#" id="confira">Confira aqui</a></p>
             </div>
 
             <div id="info-compra">
@@ -42,23 +80,162 @@
 
             <div id="mais-vendidos">
                 <p>Mais vendidos</p>
+                <div class="carousel-imagens">
+                    <div id="carouselMaisVendidos" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                          <li data-target="#carouselMaisVendidos" data-slide-to="0" class="active"></li>
+                          <li data-target="#carouselMaisVendidos" data-slide-to="1"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="row-image">
+                                    <div class="col-md-3"><img class="d-block w-100 sub-item" src="./imgs/dummy-200x200.png"></div>
+                                    <div class="col-md-3"><img class="d-block w-100 sub-item" src="./imgs/firefox-logo-200x200.png"></div>
+                                    <div class="col-md-3"><img class="d-block w-100 sub-item" src="./imgs/firefox-logo-200x200.png"></div>
+                                    <div class="col-md-3"><img class="d-block w-100 sub-item" src="./imgs/dummy-200x200.png"></div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row-image">
+                                    <div class="col-md-3"><img class="d-block w-100 sub-item" src="./imgs/firefox-logo-200x200.png"></div>
+                                    <div class="col-md-3"><img class="d-block w-100 sub-item" src="./imgs/dummy-200x200.png"></div>
+                                    <div class="col-md-3"><img class="d-block w-100 sub-item" src="./imgs/dummy-200x200.png"></div>
+                                    <div class="col-md-3"><img class="d-block w-100 sub-item" src="./imgs/firefox-logo-200x200.png"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselMaisVendidos" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Anterior</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselMaisVendidos" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Próximo</span>
+                        </a>
+                    </div>
+                </div>
             </div>
 
             <div id="lancamentos">
                 <p>Lançamentos</p>
+                <div class="carousel-imagens">
+                    <div id="carouselLancamentos" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                          <li data-target="#carouselLancamentos" data-slide-to="0" class="active"></li>
+                          <li data-target="#carouselLancamentos" data-slide-to="1"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="row-image">
+                                    <div class="col-md-3"><img class="d-block w-100 sub-item" src="./imgs/firefox-logo-200x200.png"></div>
+                                    <div class="col-md-3"><img class="d-block w-100 sub-item" src="./imgs/dummy-200x200.png"></div>
+                                    <div class="col-md-3"><img class="d-block w-100 sub-item" src="./imgs/dummy-200x200.png"></div>
+                                    <div class="col-md-3"><img class="d-block w-100 sub-item" src="./imgs/firefox-logo-200x200.png"></div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row-image">
+                                    <div class="col-md-3"><img class="d-block w-100 sub-item" src="./imgs/dummy-200x200.png"></div>
+                                    <div class="col-md-3"><img class="d-block w-100 sub-item" src="./imgs/firefox-logo-200x200.png"></div>
+                                    <div class="col-md-3"><img class="d-block w-100 sub-item" src="./imgs/firefox-logo-200x200.png"></div>
+                                    <div class="col-md-3"><img class="d-block w-100 sub-item" src="./imgs/dummy-200x200.png"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselLancamentos" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Anterior</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselLancamentos" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Próximo</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ofertas-cupons">
+                <div class="ofertas-cupons-card">
+                    <p>Cupons</p>
+                    <span class="confira">Confira ></span>
+                </div>
+
+                
+                <div class="ofertas-cupons-card">
+                    <p>Ofertas com<br>frete grátis</p>
+                    <span class="confira">Confira ></span>
+                </div>
+
+                
+                <div class="ofertas-cupons-card">
+                    <p>Produtos com<br>até 50% off</p>
+                    <span class="confira">Confira ></span>
+                </div>
             </div>
 
             <div id="depoimentos">
                 <p>Depoimentos dos clientes</p>
+                <div id="depoimentos-cards">
+                    <div class="depoimento-card">
+                        <p class="data-comentario">25/03/2022</p>
+                        <p class="comentario">Que ideia brilhante! Este site está de parabéns</p>
+
+                        <img class="stars-comentario" src="imgs/stars.png" width="150" height="50">
+                    </div>
+
+                    <div class="depoimento-card">
+                        <p class="data-comentario">02/03/2022</p>
+                        <p class="comentario">Maravilha! Economia é aqui</p>
+
+                        <img class="stars-comentario" src="imgs/stars.png" width="150" height="50">
+                    </div>
+                </div>
             </div>
 
             <div id="frase-da-loja">
+                <img src="imgs/bins.png" width="100" height="40" />
                 <p>Sua loja de sacos de lixo gourmet</p>
             </div>
 
             <div id="cadastro-promocao">
                 <p>Cadastre-se e receba novidades e promoções</p>
+                <div id="cadastro-promo-form">
+                    <input type="text" placeholder="Nome">
+                    <input type="text" placeholder="Email">
+                    <button>Enviar</button>
+                </div>
             </div>
+
+            <footer class="footer">
+                <div id="footer-contato">
+                    <img src="imgs/logo.png" class="logo" />
+                    <p>(73) 99164-8297<br>
+                    (87) 99619-7287<br>
+                    lojavirtual@desacocheio.com.br<br>
+                    Horário de funcionamento<br>Segunda a Sexta das 8h as 18h</p>
+                </div>
+                <div id="footer-institucional">
+                    <span>Institucional</span>
+                    <a href="#">Quem somos</a>
+                    <a href="#">Compra segura</a>
+                    <a href="#">Politica de privacidade</a>
+                    <a href="#">Trocas e devoluções</a>
+                    <a href="#">Formas de pagamento</a>
+                    <a href="#">Entrega</a>
+                    <a href="#">Central de atendimento</a>
+                </div>
+                <div id="footer-pagamento">
+                    <span>Pagamento</span>
+                </div>
+                <div id="footer-seguranca">
+                    <span>Segurança</span>
+                </div>
+            </footer>
         </div>
     </body>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
 </html>
