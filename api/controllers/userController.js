@@ -41,7 +41,7 @@ class user {
     }
 
     async readUserById(req, res) {
-        const { id } = req.query;
+        const { id } = req.body;
         try {
             const user = await pool.query("SELECT * FROM users WHERE user_id = $1 AND DELETED = false", [id]);
             res.json(user.rows);
@@ -55,7 +55,7 @@ class user {
         * rota vai buscar os usuarios por nome ou username ou cpf
         * a busca vai ser feita utilizando ilike para pegar partes do termo a ser buscado
         */
-        const { name } = req.query;
+        const { name } = req.body;
         try {
             const condicao = `name ilike '%${name}%' or username ilike '%${name}%' or cpf ilike '%${name}%'`;
             const query = `SELECT * FROM users WHERE ${condicao} AND deleted = false`;
@@ -67,7 +67,7 @@ class user {
     }
 
     async readUserByCPF(req, res) {
-        const { cpf } = req.query;
+        const { cpf } = req.body;
         try {
             const user = await pool.query("SELECT * FROM users WHERE cpf = $1 AND deleted = false", [cpf]);
             res.json(user.rows[0]);

@@ -30,7 +30,7 @@ class address {
             }
         }
         async readAddressById(req, res) {
-            const { id } = req.query;
+            const { id } = req.body;
             try {
                 const product = await pool.query("SELECT * FROM addresses WHERE address_id = $1 AND DELETED = false", [id]);
                 res.json(product.rows);

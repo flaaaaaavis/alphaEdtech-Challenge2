@@ -26,7 +26,7 @@ class size {
         }
     }
     async readSizeById(req, res) {
-        const { id } = req.query;
+        const { id } = req.body;
         try {
             const product = await pool.query("SELECT * FROM sizes WHERE size_id = $1 AND DELETED = false", [id]);
             res.json(product.rows);
