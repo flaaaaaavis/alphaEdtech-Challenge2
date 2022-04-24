@@ -1,15 +1,7 @@
 const pool = require('../database')
 const jwt = require('jsonwebtoken')
-const bcrypt = require('bcrypt');
-const res = require('express/lib/response');
+const bcrypt = require('bcrypt')
 require('dotenv').config()
-
-// req.cookies("token");
-// res.cookies("token", token, {
-//     secure: true,
-//     httpOnly: true,
-//     sameSite: 'none'
-// });
 
 class session {
     createToken(_token) {
@@ -19,23 +11,26 @@ class session {
       
         return { token };
     };
-    async validateToken(req, res, next) {
+    async validateToken(req, res) {
         const cookieToken = req.cookies;
         console.log(cookieToken);
         try {
-            if(cookieToken) {
+            // if(cookieToken) {
                 const result = jwt.verify(req.cookies, process.env.SECRET);
-                if(result) next()
-                else throw new Error('Invalid token');
-            } else {
-                if(req.url == '/login' || req.url == '/createUser') next()
-                else throw new Error('Invalid token');
-            }
+            //     if(result) next()
+            //     else throw new Error('Invalid token');
+            // } else {
+            //     if(req.url == '/login' || req.url == '/createUser') next()
+            //     else throw new Error('Invalid token');
+            // }
         } catch (error) {
-            res.send(error);
-        } 
+            console.log(error);
+        }
+        console.log("MIDDLEWARE"); 
     }
     async login(req, res) {
+        await this.validateToken(req, res);
+        console.log("LOGIN");
         const { email, password } = req.body;
         try {
             await pool.query(`BEGIN TRANSACTION;`);
