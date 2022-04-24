@@ -1,4 +1,5 @@
 const pool = require('../database')
+const path = require('path')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 require('dotenv').config()
@@ -42,14 +43,21 @@ class session {
                 bcrypt.compare(password, dbData.rows[0].password).then((result) => { 
                     if(result && !testToken) {
                         const string = `${dbData.rows[0].user_id}${dbData.rows[0].email}`;
+                        const userId = `${dbData.rows[0].user_id}`;
                         const { token } = this.createToken(string);
                         res.cookie("token", token, {
                             secure: true,
                             httpOnly: true,
                             sameSite: 'none'
                         });
+                        res.cookie("userId", userId, {
+                            secure: true,
+                            httpOnly: true,
+                            sameSite: 'none'
+                        });
                         res.status(200).send(result);
                     } else if (result) {
+                        // res.sendFile(path.join(__dirname, '../../frontend/', 'createAddress.html'))
                         res.status(200).send( { message: 'Logged in'} );
                     } else {
                         res.status(401).send( { message: 'Wrong password, try again'} )

@@ -9,15 +9,21 @@ class address {
             const productData = [req.body.cep, req.body.estado, req.body.cidade, req.body.bairro, req.body.logradouro, req.body.number];
             const transaction = `BEGIN TRANSACTION;`;
             const addProduct = `INSERT INTO addresses( cep, estado, cidade, bairro, logradouro, number) VALUES ($1, $2, $3, $4, $5, $6);`;
-            console.log(productData);
+            const reqId = `SELECT address_id FROM addresses WHERE cep = $1, estado = $2, cidade = $3, bairro = $4, logradouro = $5, number = $6`;
             try {
-                console.log("Entrou no Try");
+                res.send(req.cookies.get('userId'));
                 await pool.query(transaction);
                 await pool.query(addProduct, productData);
+
+                const addressId = await pool.query(reqId, productData).rows[0].address_id;
+
+                await pool.query(`UPDATE users SET address_id = ${addressId} WHERE user_id = ${req.cookies.userId}`);
+
                 await pool.query(`COMMIT;`);
                 res.status(201).send({ message: "Created"} );
             } catch (e) {
-                res.send(e)
+                console.log(e)
+                res.send("não deu")
             }
         }
     // Read
