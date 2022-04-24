@@ -12,26 +12,24 @@ class session {
         return { token };
     };
     async validateToken(req, res) {
-        const cookieToken = req.cookies;
-        console.log(cookieToken);
+        const cookieToken = req.cookies.token;
         try {
-            // if(cookieToken) {
-                const result = jwt.verify(req.cookies, process.env.SECRET);
-            //     if(result) next()
-            //     else throw new Error('Invalid token');
-            // } else {
-            //     if(req.url == '/login' || req.url == '/createUser') next()
-            //     else throw new Error('Invalid token');
-            // }
+            if(cookieToken) {
+                const result = jwt.verify(cookieToken, process.env.SECRET);
+                if(result) return true
+                else throw new Error('Invalid token');
+            } else {
+                if(req.url == '/login' || req.url == '/createUser') return true
+                else throw new Error('Invalid token');
+            }
         } catch (error) {
             console.log(error);
+            return false;
         }
-        console.log("MIDDLEWARE"); 
     }
     async login(req, res) {
-        await this.validateToken(req, res);
-        console.log("LOGIN");
         const { email, password } = req.body;
+        const testToken = await this.validateToken(req, res);
         try {
             await pool.query(`BEGIN TRANSACTION;`);
             const dbEmail = await pool.query(`SELECT * FROM contacts WHERE email = '${email}';`);
@@ -42,16 +40,19 @@ class session {
                     INNER JOIN contacts ON users.contact_id=contacts.contact_id;
                 `);
                 bcrypt.compare(password, dbData.rows[0].password).then((result) => { 
-                    if(result == true) {
-                        const { token } = this.createToken(dbData.rows[0].user_id);
+                    if(result && !testToken) {
+                        const string = `${dbData.rows[0].user_id}${dbData.rows[0].email}`;
+                        const { token } = this.createToken(string);
                         res.cookie("token", token, {
                             secure: true,
                             httpOnly: true,
                             sameSite: 'none'
                         });
                         res.status(200).send(result);
+                    } else if (result) {
+                        res.status(200).send( { message: 'Login sucessfully completed'} );
                     } else {
-                        res.status(401).send( { message: 'Wrong password'} )
+                        res.status(401).send( { message: 'Wrong password, try again'} )
                     }
                 });
             } else res.send( { message: 'User not found'} )

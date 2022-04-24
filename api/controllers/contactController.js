@@ -1,5 +1,8 @@
 const pool = require('../database')
 
+const session = require('./controllers/sessionController')
+const sessionControl = new session()
+
 class contact {
     async createContact(req, res) {
         const productData = [req.body.ddd, req.body.phone, req.body.email];

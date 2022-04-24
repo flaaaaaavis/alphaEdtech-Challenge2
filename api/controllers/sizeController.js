@@ -1,5 +1,8 @@
 const pool = require('../database')
 
+const session = require('./controllers/sessionController')
+const sessionControl = new session()
+
 class size {
     async createSize(req, res) {
         const productData = [req.body.size, req.body.height, req.body.width, req.body.depth];

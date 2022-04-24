@@ -1,12 +1,15 @@
 const pool = require('../database')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-const { hash } = require('bcrypt')
+
+const session = require('./controllers/sessionController')
+const sessionControl = new session()
 
 class user {
     async createUser(req, res) {
         const { name, cpf, birthdate, email, ddd, phone } = req.body;
         let password = req.body.password;
+
         let hashedPass;
         let contactId;
         const saltRounds = 12;

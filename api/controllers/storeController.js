@@ -1,5 +1,8 @@
 const pool = require('../database')
 
+const session = require('./controllers/sessionController')
+const sessionControl = new session()
+
 class store {
     async createStore(req, res) {
         const productData = [req.body.name, req.body.userId];
