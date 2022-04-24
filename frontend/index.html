@@ -10,9 +10,14 @@
         <title>de Saco Cheio</title>
     </head>
     <body>
-        <form action="/login" method="post">
-            <input type="text" name="email">
-            <input type="password" name="password">
+        <form action="/createUser" method="post">
+            Name: <input type="text" name="name" maxlength="50"><br />
+            CPF: <input type="text" name="cpf" maxlength="11"><br />
+            Birthdate: <input type="date" name="birthdate"><br />
+            Email: <input type="text" name="email"><br />
+            DDD: <input type="text" name="ddd" maxlength="2"><br />
+            Phone: <input type="text" name="phone" maxlength="9"><br />
+            Password: <input type="password" name="password"><br />
             <input type="submit" value="submit">
         </form>
         <!-- <header>

@@ -50,18 +50,18 @@ class session {
                         });
                         res.status(200).send(result);
                     } else if (result) {
-                        res.status(200).send( { message: 'Login sucessfully completed'} );
+                        res.status(200).send( { message: 'Logged in'} );
                     } else {
                         res.status(401).send( { message: 'Wrong password, try again'} )
                     }
                 });
-            } else res.send( { message: 'User not found'} )
+            } else res.send( { message: 'User not found'} );
             await pool.query(`COMMIT;`);
         } catch (err) {
-            res.status(401).send( { message: 'User not found'} ).end();
+            res.status(401).send( { message: 'Try again'} ).end();
             await pool.query(`COMMIT;`);
         }   
     }
 }
 
-module.exports = session
+module.exports = session;

@@ -1,39 +1,34 @@
 const pool = require('../database')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
+require('dotenv').config()
 
-const session = require('./controllers/sessionController')
+const session = require('./sessionController')
 const sessionControl = new session()
 
 class user {
     async createUser(req, res) {
-        const { name, cpf, birthdate, email, ddd, phone } = req.body;
-        let password = req.body.password;
-
+        const { name, cpf, birthdate, email, password, ddd, phone } = req.body;
+        const saltRounds = 12;
         let hashedPass;
         let contactId;
-        const saltRounds = 12;
-
+        
         bcrypt.hash(password, saltRounds).then(async (hash) => {
             hashedPass = `${hash}`;
-
-            const transaction = `BEGIN TRANSACTION;`;
-            const commit = `COMMIT;`;
-        
             try {
-                await pool.query(transaction);
+                await pool.query(`BEGIN TRANSACTION;`);
                 await pool.query(`INSERT INTO contacts (email, ddd, phone) VALUES ('${email}', ${ddd}, ${phone});`);
                 const selected = await pool.query(`SELECT contact_id FROM contacts WHERE email = '${email}';`);
                 contactId = selected.rows[0].contact_id;
 
                 await pool.query(`INSERT INTO users (name, cpf, birthdate, contact_id, password) VALUES ('${name}', '${cpf}', '${birthdate}', ${contactId}, '${hashedPass}');`);
-                await pool.query(commit);
-                res.status(201).send({ message: "Created" });
-                    
+                await pool.query(`COMMIT;`);
+                res.status(200).send( { message: 'Created' } );
             } catch (e) {
-                res.send(e)
+                console.log(e);
+                res.send( { message: 'Try again'} );
             }
-        })        
+        })   
     }
 
     async readAllUsers(req, res) {
@@ -91,12 +86,12 @@ class user {
     }
 
     async updateUser(req, res) {
-        const { name, pass, cpf, user} = req.body;
+        const { name, pass, cpf, username} = req.body;
         // console.log(req.body);
         try {
             await pool.query(
                 "UPDATE users SET name = $1, password = $2, username = $4 WHERE cpf = $3 AND deleted = false" ,
-                [name, pass, cpf, user]
+                [name, pass, cpf, username]
             );
             res.status(200).send({ message: "User Updated Successfully!" });
         } catch (e) {

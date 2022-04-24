@@ -1,6 +1,6 @@
 const pool = require('../database')
 
-const session = require('./controllers/sessionController')
+const session = require('./sessionController')
 const sessionControl = new session()
 
 class store {
