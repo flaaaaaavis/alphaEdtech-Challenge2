@@ -1,53 +1,31 @@
-INSERT INTO users(name, CPF, username, password) VALUES('Adelina Buenaventura', '61129413098', 'teste1', '123456');
-    -- INSERT INTO addresses( cep,estado, cidade, bairro, logradouro, number) VALUES('72912288', 'GO', 'Águas Lindas de Goiás', 'Residencial Portal da Barragem', 'Quadra Quadra 3', '27');
-    -- INSERT INTO contacts(phone, email) VALUES('11941931525', 'ridigad378@leafzie.com');
+-- users
+INSERT INTO users(name, CPF, birthdate, password) VALUES('Adelina Ventura', '61129413098', '1986-06-05', '123456');
+INSERT INTO users(name, CPF, birthdate, password) VALUES('Adelino Gago', '30776493060', '1982-09-23', '123456');
+INSERT INTO users(name, CPF, birthdate, password) VALUES('Adélio Lisboa', '80770645070', '1983-11-30', '123456');
+INSERT INTO users(name, CPF, birthdate, password) VALUES('Adérito Bahía', '92620880009', '1983-04-27', '123456');
+INSERT INTO users(name, CPF, birthdate, password) VALUES('Adolfo Patrício', '00717589099', '1997-11-11', '123456');
+INSERT INTO users(name, CPF, birthdate, password) VALUES('Adriana Guedelha', '36604337057', '2000-12-07', '123456');
+INSERT INTO users(name, CPF, birthdate, password) VALUES('Aida Dorneles', '40179410016', '1994-11-07', '123456');
+INSERT INTO users(name, CPF, birthdate, password) VALUES('Alarico Quinterno', '59723481014', '1987-10-03', '123456');
 
-INSERT INTO users(name, CPF, username, password) VALUES('Adelino Gago', '30776493060', 'teste2', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Adélio Lisboa', '80770645070', 'teste3', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Adérito Bahía', '92620880009', 'teste4', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Adolfo Patrício', '00717589099', 'teste5', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Adriana Guedelha', '36604337057', 'teste6', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Aida Dorneles', '40179410016', 'teste7', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Alarico Quinterno', '59723481014', 'teste8', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Alberto Cezimbra', '74824029007', 'teste9', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Alberto Monsanto', '12486782060', 'teste10', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Albino Canela', '94014209040', 'teste11', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Alceste Varanda', '61849885060', 'teste12', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Alcides Carvalhais', '12693624029', 'teste13', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Aldo Martins', '86734219003', 'teste14', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Alexandra Tabares', '25704268064', 'teste15', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Alfredo Cotrim', '07593948064', 'teste16', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Almeno Figueira', '91792026080', 'teste17', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Alvito Peralta', '81948935007', 'teste18', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Amadeu Martinho', '20991167090', 'teste19', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Amélia Estévez', '39199324040', 'teste20', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Ana Homem', '80979172039', 'teste21', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Ana Peseiro', '22602993000', 'teste22', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Anacleto Garrau', '20244294089', 'teste23', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Anacleto Guterres', '08365302098', 'teste24', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Andreia Carvalhal', '57401567008', 'teste25', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Aníbal Bastos', '00585560013', 'teste26', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Anita Beserra', '09770877000', 'teste27', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Anna Beça', '51588782000', 'teste28', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Anna Carvajal', '18165471074', 'teste29', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Anselmo Dinis', '45684255060', 'teste30', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Antão Corte-Real', '87745905028', 'teste31', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Antero Milheiro', '62850870080', 'teste32', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Antónia Canhão', '74600637038', 'teste33', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Antônio Leiria', '00759953015', 'teste34', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('António Lousado', '66765476008', 'teste35', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Antônio Sobral', '24734348081', 'teste36', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Apuã Ourique', '79877796015', 'teste37', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Arachane Matos', '77960198071', 'teste38', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Arcidres Murici', '60380932067', 'teste39', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Armindo Castilhos', '49766334030', 'teste40', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Armindo Moreira', '19969237063', 'teste41', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Artur Macedo', '03104070016', 'teste42', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Artur Peña', '21535603062', 'teste43', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Aurélio Barrios', '61247439062', 'teste44', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Bárbara Magalhães', '46278022001', 'teste45', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Bartolomeu Vila-Chã', '18873340091', 'teste46', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Basilio Soares', '89723494027', 'teste47', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Belmira Colaço', '41537591045', 'teste48', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Belmiro Marroquim', '44273297051', 'teste49', '123456');
-INSERT INTO users(name, CPF, username, password) VALUES('Bento Quintão', '97241294033', 'teste50', '123456');
+-- address
+INSERT INTO addresses(cep, estado, cidade, bairro, logradouro, number) VALUES('41205770', 'BA', 'Salvador', 'Tancredo Neves', 'Rua 2 de Maio', '44');
+INSERT INTO addresses(cep, estado, cidade, bairro, logradouro, number) VALUES('79015200', 'MS', 'Campo Grande', 'Jardim Presidente', 'Rua Augusto Magnusson', '84');
+INSERT INTO addresses(cep, estado, cidade, bairro, logradouro, number) VALUES('57017335', 'AL', 'Maceió', 'Bom Parto', 'Rua Jonas Montenegro', '13');
+INSERT INTO addresses(cep, estado, cidade, bairro, logradouro, number) VALUES('66625091', 'PA', 'Belém', 'Cabanagem', 'Rua Santo Antônio', '34');
+INSERT INTO addresses(cep, estado, cidade, bairro, logradouro, number) VALUES('74486901', 'GO', 'Goiânia', 'Condomínio Residencial Santa Maria I', 'Avenida Santa Maria, s/n', '847');
+INSERT INTO addresses(cep, estado, cidade, bairro, logradouro, number) VALUES('75020120', 'GO', 'Anápolis', 'Setor Central', 'Rua Washington de Carvalho', '300');
+INSERT INTO addresses(cep, estado, cidade, bairro, logradouro, number) VALUES('50900660', 'PE', 'Recife', 'Barro', 'Avenida Doutor José Rufino', '93');
+INSERT INTO addresses(cep, estado, cidade, bairro, logradouro, number) VALUES('69911578', 'AC', 'Rio Branco', 'Bahia Velha', 'Beco Cecília Freitas', '227');
+
+-- contacts
+INSERT INTO contacts(ddd, phone, email) VALUES('11', '941931525', 'ridigad378@leafzie.com');
+INSERT INTO contacts(ddd, phone, email) VALUES('85', '989223719', 'l4xl6vyh@cheesethecakerecipes.com');
+INSERT INTO contacts(ddd, phone, email) VALUES('81', '999932586', 'mfaddal6233@uorak.com');
+INSERT INTO contacts(ddd, phone, email) VALUES('68', '982755248', 'giraldo8633@uorak.com');
+INSERT INTO contacts(ddd, phone, email) VALUES('85', '995539787', 'codruta9979@uorak.com');
+INSERT INTO contacts(ddd, phone, email) VALUES('91', '985957824', 'luka2441@uorak.com');
+INSERT INTO contacts(ddd, phone, email) VALUES('95', '995075347', 'victorio9039@uorak.com');
+INSERT INTO contacts(ddd, phone, email) VALUES('61', '987672124', 'inna7293@uorak.com');
+
+

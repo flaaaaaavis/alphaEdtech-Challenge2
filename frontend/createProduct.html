@@ -13,7 +13,7 @@
     <body>
         <div id="drag-drop-area"></div>
 
-        <form action="/createProduct">
+        <form action="/createProduct" method="POST">
             Name: <input type="text" name="name">
             <br />
             Value: <input type="number" name="value">
@@ -22,8 +22,14 @@
             <br />
             Model: <input type="text" name="model">
             <br />
-            <input type="hidden" name="sizeId">
-            <input type="hidden" name="storeId">
+            Height: <input type="number" step='0.01' placeholder='0.00'>
+            <br />
+            Width: <input type="number" step='0.01' placeholder='0.00'>
+            <br />
+            Depth: <input type="number" step='0.01' placeholder='0.00'>
+            <br />
+
+            <input type="hidden" name="userId" value="">
 
             <input type="submit" value="SUBMIT">
         </form>

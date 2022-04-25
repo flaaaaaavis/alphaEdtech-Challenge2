@@ -3,6 +3,19 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 require('dotenv').config()
 
+// sessions [
+//     {
+//         sessionId: ,
+//         userId: ,
+//         cart: [productId, productId, productId],
+//     },
+//     {
+//         sessionId: ,
+//         userId: ,
+//         cart: [productId, productId, productId]
+//     },
+// ]
+
 class session {
     createToken(_token) {
         const token = jwt.sign({ _token }, process.env.SECRET, {
