@@ -6,14 +6,13 @@ const cors = require('cors')
 const path = require('path')
 require('dotenv').config()
 const multer = require('multer')
-const Uppy = require('@uppy/core')
-const XHRUpload = require('@uppy/xhr-upload')
-const Dashboard = require('@uppy/dashboard')
+
+let fileName;
 
 const storage = multer.diskStorage({
     destination: `${__dirname}/uploads/`,
     filename: (req, file, cb) => {
-        const fileName = `${Date.now()}${path.extname(file.originalname)}`;
+        fileName = `${Date.now()}${path.extname(file.originalname)}`;
         cb(null, fileName);
     }
 })
@@ -37,7 +36,7 @@ const user = require('./controllers/userController')
 const userControl = new user()
 
 app.use(express.static('./frontend'))
-// app.use( cors() )
+app.use( cors() )
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())

@@ -13,21 +13,7 @@
         <div id="drag-drop-area"></div>
 
         <script src="https://releases.transloadit.com/uppy/v2.9.3/uppy.min.js"></script>
-        <script>
-            var uppy = new Uppy.Core()
-              .use(Uppy.Dashboard, {
-                inline: true,
-                target: '#drag-drop-area',
-              })
-              .use(Uppy.XHRUpload, {
-                endpoint: 'http://localhost:3000/image',
-                fieldName: 'photo',
-                formData: true,
-              })
-
-            uppy.on('complete', (result) => {
-              console.log('Upload complete! We’ve uploaded these files:', result.successful)
-            })
+        <script src="./scripts/image-upload.js">
         </script>
     </body>
 </html>
