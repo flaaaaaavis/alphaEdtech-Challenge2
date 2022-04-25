@@ -15,7 +15,7 @@ class address {
                 await pool.query(transaction);
                 await pool.query(addProduct, productData);
                 await pool.query(`COMMIT;`);
-                res.status(201).send({ message: "Created"} );
+                res.status(201).send( { message: "Created"} );
             } catch (e) {
                 res.send(e)
             }

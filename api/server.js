@@ -3,7 +3,22 @@ const app = express()
 const port = 3000
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
+const path = require('path')
 require('dotenv').config()
+const multer = require('multer')
+const Uppy = require('@uppy/core')
+const XHRUpload = require('@uppy/xhr-upload')
+const Dashboard = require('@uppy/dashboard')
+
+const storage = multer.diskStorage({
+    destination: `./uploads`,
+    filename: (req, file, cb) => {
+        const fileName = `${Date.now()}${path.extname(file.originalname)}`;
+        cb(null, fileName);
+    }
+})
+
+const uploadedImage = multer({storage}).single('photo');
 
 // Controlers
 const address = require('./controllers/addressController')
@@ -22,10 +37,9 @@ const user = require('./controllers/userController')
 const userControl = new user()
 
 app.use(express.static('./frontend'))
-
+app.use( cors() )
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(cors())
 app.use(cookieParser())
 
 // Address
@@ -79,6 +93,11 @@ app.use(cookieParser())
         })
 
 // Product
+    // image
+        app.post('/image', uploadedImage, (req, res) => {
+            if(req.file) return res.json({ message: 'Uploaded'})
+            else res.send({ message: 'Upload failed'})
+        })
     // CREATE
             app.post('/createProduct', (req, res) => {
                 productControl.createProduct(req, res)
