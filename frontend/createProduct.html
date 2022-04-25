@@ -6,11 +6,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link href="https://releases.transloadit.com/uppy/v2.9.3/uppy.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="./styles/createProduct.css">
 
         <title>Uploading Images</title>
     </head>
     <body>
         <div id="drag-drop-area"></div>
+
+        <form action="/createProduct">
+            Name: <input type="text" name="name">
+            <br />
+            Value: <input type="number" name="value">
+            <br />
+            Description: <input type="text" name="description">
+            <br />
+            Model: <input type="text" name="model">
+            <br />
+            <input type="hidden" name="sizeId">
+            <input type="hidden" name="storeId">
+
+            <input type="submit" value="SUBMIT">
+        </form>
 
         <script src="https://releases.transloadit.com/uppy/v2.9.3/uppy.min.js"></script>
         <script src="./scripts/image-upload.js"></script>

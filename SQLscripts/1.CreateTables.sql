@@ -35,6 +35,7 @@ CREATE TABLE public.stores (
 CREATE TABLE public.products (
 	"product_id" serial NOT NULL,
 	"name" varchar(20) NOT NULL,
+	"value" money NOT NULL,
 	"description" text NOT NULL,
 	"model" varchar(30) NOT NULL,
 	"size_id" integer,
