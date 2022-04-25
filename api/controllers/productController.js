@@ -51,6 +51,7 @@ class product {
             console.error(err.message)
         }
     }
+    
     async updateProduct(req, res) {
         const { name, description, model, id } = req.body;
         // console.log(req.body);

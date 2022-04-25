@@ -45,6 +45,15 @@ CREATE TABLE public.products (
   OIDS=FALSE
 );
 
+CREATE TABLE public.photos (
+	"photo_id" serial NOT NULL,
+	"product_id" integer NOT NULL,
+	"image_src" TEXT NOT NULL,
+	CONSTRAINT "photos_pk" PRIMARY KEY ("photo_id")
+) WITH (
+  OIDS=FALSE
+);
+
 CREATE TABLE public.sizes (
 	"size_id" serial NOT NULL,
 	"size" varchar(5) NOT NULL,
@@ -112,3 +121,5 @@ ALTER TABLE "carts" ADD CONSTRAINT "carts_fk0" FOREIGN KEY ("user_id") REFERENCE
 
 ALTER TABLE "cart_product" ADD CONSTRAINT "cart_product_fk0" FOREIGN KEY ("cart_id") REFERENCES "carts"("cart_id");
 ALTER TABLE "cart_product" ADD CONSTRAINT "cart_product_fk1" FOREIGN KEY ("product_id") REFERENCES "products"("product_id");
+
+ALTER TABLE "photos" ADD CONSTRAINT "photos_fk0" FOREIGN KEY ("product_id") REFERENCES "products"("product_id");

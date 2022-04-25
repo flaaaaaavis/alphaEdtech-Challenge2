@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 const cookieParser = require('cookie-parser')
+const pool = require('./database')
 const cors = require('cors')
 const path = require('path')
 require('dotenv').config()
@@ -93,8 +94,17 @@ app.use(cookieParser())
 
 // Product
     // image
-        app.post('/image', uploadedImage, (req, res) => {
-            if(req.file) return res.json({ message: 'Uploaded'})
+        app.post('/image', uploadedImage, async (req, res) => {
+            const { productId } = req.body;
+            if(req.file) {
+                try {
+                    await pool.query(`INSERT INTO photos(product_id, image_src) VALUEs (${productId}, ${fileName})`);
+                    res.status(200).send({ message: 'Uploaded' });
+                } catch (e) {
+                    console.log("Ocorreu um erro na conexão.\n" + e);
+                    res.send({ message: 'Upload failed'})
+                }
+            } 
             else res.send({ message: 'Upload failed'})
         })
     // CREATE
