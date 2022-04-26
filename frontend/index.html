@@ -8,20 +8,25 @@
         <link rel="stylesheet" href="styles/style.css">
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
         <title>de Saco Cheio</title>
     </head>
     <body>
-        <div class="principal">
             <div id="topo">
-                <img src="imgs/logo.png" class="logo" />
+                <img src="imgs/logo.svg" class="logo" />
 
-                <div id="buscar"><input type="text" placeholder="Pesquisar"></div>
+                <!-- <div id="buscar"><input type="text" placeholder="Pesquisar"></div> -->
 
-                <p>Tem dúvidas?<br><span id="span-atendimento">Atendimento</span></p>
+                <button id="btn-entre">
+                    <a href="login.html">Entre</a>
+                </button>
+                <button id="btn-cadastre">
+                    <a href="createUser.html">Cadastre-se</a>
+                </button>
+                <div id="btn-carrinho">
+                    <img src="imgs/shopping_cart_FILL0_wght400_GRAD0_opsz48.svg"><a href="cart.html">Carrinho</a>
+                </div>
 
-                <p><span id="span-entre"><a href="login.html">Entre</a></span> ou<br><span id="span-cadastre"><a href="createUser.html">Cadastre-se</a></span></p>
-
-                <p id="p-carrinho">Carrinho<br><span id="span-carrinho">Carrinho vazio</span></p>
             </div>
 
             <header class="header">
@@ -59,10 +64,6 @@
                       <span class="sr-only">Próximo</span>
                     </a>
                 </div>
-            </div>
-
-            <div id="promo-banner">
-                <p>Aproveite nossas ofertas e PROMOÇÕES, produtos com até 50% OFF <a href="#" id="confira">Confira aqui</a></p>
             </div>
 
             <div id="info-compra">
@@ -193,7 +194,7 @@
 
             <footer class="footer">
                 <div id="footer-contato">
-                    <img src="imgs/logo.png" class="logo" />
+                    <img src="imgs/logo.svg" class="logo" />
                     <p>(73) 99164-8297<br>
                     (87) 99619-7287<br>
                     lojavirtual@desacocheio.com.br<br>
@@ -216,7 +217,6 @@
                     <span>Segurança</span>
                 </div>
             </footer>
-        </div>
     </body>
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

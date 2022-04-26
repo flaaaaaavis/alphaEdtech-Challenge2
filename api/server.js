@@ -72,7 +72,6 @@ app.use(cookieParser())
             else {
                 res.status(401).send({ message:'Moiô'})
             }
-            
         })
         app.get('/readDeletedAddresses', async (req, res) => {
             const testToken = await sessionControl.validateToken(req, res);
@@ -83,7 +82,6 @@ app.use(cookieParser())
             else {
                 res.status(401).send({ message:'Moiô'})
             }
-            
         })
     // UPDATE
         app.put("/updateAddress", async (req, res) => {
@@ -226,15 +224,6 @@ app.use(cookieParser())
             const testToken = await sessionControl.validateToken(req, res);
             if (testToken) {
                 productControl.readAllProducts(req, res)
-            } else if(!testToken) {
-                res.status(401).send({ message:'Log into your account'})}
-            else {
-                res.status(401).send({ message:'Moiô'}) }
-        })
-        app.get('/readStoreProducts', async (req, res) => {
-            const testToken = await sessionControl.validateToken(req, res);
-            if (testToken) {
-                productControl.readStoreProducts(req, res)
             } else if(!testToken) {
                 res.status(401).send({ message:'Log into your account'})}
             else {
