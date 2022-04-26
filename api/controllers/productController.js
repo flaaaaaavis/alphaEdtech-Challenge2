@@ -5,16 +5,18 @@ const sessionControl = new session()
 
 class product {
     async createProduct(req, res) {
-        const productData = [req.body.name, req.body.description, req.body.model];
+        const productData = [req.body.name, req.body.value, req.body.description, req.body.model, req.body.height, req.body.width, req.body.depth, req.body.userId];
         const transaction = `BEGIN TRANSACTION`;
-        const addProduct = `INSERT INTO products (name, description, model) VALUES ($1, $2, $3)`;
+        const addProduct = `INSERT INTO products (name, value, description, model, height, width, depth, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
         try {
             await pool.query(transaction);
             await pool.query(addProduct, productData);
             await pool.query(`COMMIT`);
-            res.sendStatus(201)
+            res.status(201).send({ message: 'Created' })
+            
         } catch (e) {
-            console.error(e)
+            console.error(e);
+            res.status(401).send({ message: 'Could not be created' })
         }
     }
     async readAllProducts(req, res) {

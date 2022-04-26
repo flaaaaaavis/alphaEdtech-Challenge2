@@ -1,6 +1,5 @@
 CREATE TABLE public.users (
 	"user_id" serial NOT NULL,
-	"token_id" integer,
 	"name" varchar(50) NOT NULL,
 	"cpf" varchar(11) NOT NULL UNIQUE,
 	"birthdate" date NOT NULL,
@@ -9,15 +8,6 @@ CREATE TABLE public.users (
 	"address_id" integer,
 	"deleted" BOOLEAN NOT NULL DEFAULT 'false',
 	CONSTRAINT "users_pk" PRIMARY KEY ("user_id")
-) WITH (
-  OIDS=FALSE
-);
-
-CREATE TABLE public.token (
-	"token_id" serial NOT NULL,
-	"code" text NOT NULL,
-	"due_date" date NOT NULL,
-	CONSTRAINT "token_pk" PRIMARY KEY ("token_id")
 ) WITH (
   OIDS=FALSE
 );
