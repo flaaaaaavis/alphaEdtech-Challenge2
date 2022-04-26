@@ -23,7 +23,7 @@ class user {
 
                 await pool.query(`INSERT INTO users (name, cpf, birthdate, contact_id, password) VALUES ('${name}', '${cpf}', '${birthdate}', ${contactId}, '${hashedPass}');`);
                 await pool.query(`COMMIT;`);
-                res.status(200).send( { message: 'Created' } );
+                res.status(201).send( { message: 'Created' } );
             } catch (e) {
                 console.log(e);
                 res.send( { message: 'Try again'} );

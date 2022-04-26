@@ -5,15 +5,17 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="styles/login.css">
 
         <title>de Saco Cheio</title>
     </head>
     <body>
-        <form action="/login" method="post">
-            E-mail: <input type="text" name="email" maxlength="50"><br />
-            Password: <input type="password" name="password"><br />
-            <input type="submit" value="submit">
-        </form>
+        <div id="form-login">
+            <h2>Login</h2>
+            E-mail: <input type="text" id="email" maxlength="50">
+            Password: <input type="password" id="senha">
+            <button onclick="login()">Login</button>
+        </div>
     </body>
+    <script src="scripts/users-script.js"></script>
 </html>

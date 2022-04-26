@@ -27,6 +27,27 @@ function validaEmail(email) {
     return re.test(email);
 }
 
+function login() {
+    const email = document.getElementById("email")
+    const senha = document.getElementById("senha")
+    fetch(apiURL+'login', {
+        method: "post",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            email: email.value,
+            password: senha.value
+        })
+    }).then(response => {
+        console.log(response)
+        if (response.status !== 200) {
+            alert("Falha no login")
+        } else {
+            alert("Logado com sucesso")
+            window.location = 'index.html'
+        }
+    });
+}
+
 /**
  * função para chamar o endpoint para listar todos os usuarios
  */
@@ -113,6 +134,8 @@ function saveUser(){
             dtnasc.value = ""
             phone.value = ""
             alert("Usuário salvo com sucesso.")
+            //redireciona para o login após cadastro
+            window.location = 'login.html'
         }
     });
 }
