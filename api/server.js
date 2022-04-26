@@ -122,7 +122,7 @@ app.use(cookieParser())
         app.get('/readStoreProducts', (req, res) => {
             productControl.readStoreProducts(req, res)
         })
-        app.get('/readProductById', (req, res) => {
+        app.get('/readProductById/:id', (req, res) => {
             productControl.readProductById(req, res)
         })
         app.get('/readDeletedProducts', (req, res) => {

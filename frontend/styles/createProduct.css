@@ -6,10 +6,29 @@
 }
 
 body {
-    min-height: 100vh;
-    
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+
+    background-color: #f3f1d6;
+}
+
+#drag-drop-area {
+    margin-top: 100px;
+}
+
+#form-cadastro {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+}
+
+#form-cadastro > form {
+    display: flex;
+    flex-direction: column;
+}
+
+#form-cadastro > form > input {
+    height: 40px;
 }
