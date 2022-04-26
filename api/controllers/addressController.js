@@ -1,4 +1,6 @@
 const pool = require('../database')
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
 
 const session = require('./sessionController')
 const sessionControl = new session()

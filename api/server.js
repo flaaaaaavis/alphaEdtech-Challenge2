@@ -36,105 +36,251 @@ const storeControl = new store()
 const user = require('./controllers/userController')
 const userControl = new user()
 
+app.use(express.urlencoded({ extended: true }))
 app.use(express.static('./frontend'))
 app.use( cors() )
 app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 
 // Address
     // CREATE
         app.post('/createAddress', async (req, res) => {
             const testToken = await sessionControl.validateToken(req, res);
-            if (testToken) addressControl.createAddress(req, res)
-            else res.status(401).send({ message:'Log into your account'})
+            if (testToken) {
+                addressControl.createAddress(req, res)
+            }
+            else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'})
+            }
         })
     // READ
-        app.get('/readAllAddresses', (req, res) => {
-            addressControl.readAllAddresses(req, res)
+        app.get('/readAllAddresses', async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                addressControl.readAllAddresses(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'})
+            }
+            
         })
-        app.get('/readAddressById', (req, res) => {
-            addressControl.readAddressById(req, res)
+        app.get('/readAddressById', async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                addressControl.readAddressById(req, res)}
+            else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'})
+            }
+            
         })
-        app.get('/readDeletedAddresses', (req, res) => {
-            addressControl.readDeletedAddresses(req, res)
+        app.get('/readDeletedAddresses', async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                addressControl.readDeletedAddresses(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'})
+            }
+            
         })
     // UPDATE
-        app.put("/updateAddress", (req, res) => {
-            addressControl.updateAddress(req, res)
+        app.put("/updateAddress", async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                addressControl.updateAddress(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'})
+            }
         })
     // DELETE
-        app.put('/deleteAddress', (req, res) => {
-            addressControl.deleteAddress(req, res)
+        app.put('/deleteAddress', async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                addressControl.deleteAddress(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'})
+            }
         })
 
 // Contact
     // CREATE
-            app.post('/createContact', (req, res) => {
-                contactControl.createContact(req, res)
-            })
+            app.post('/createContact', async (req, res) => {
+                const testToken = await sessionControl.validateToken(req, res);
+                if (testToken) {
+                    contactControl.createContact(req, res)
+                } else if(!testToken) {
+                    res.status(401).send({ message:'Log into your account'})}
+                else {
+                    res.status(401).send({ message:'Moiô'}) } 
+                })
     // READ
-        app.get('/readAllContacts', (req, res) => {
-            contactControl.readAllContacts(req, res)
+        app.get('/readAllContacts', async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                contactControl.readAllContacts(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) } 
+            })
+        app.get('/readContactById', async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                contactControl.readContactById(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) }
         })
-        app.get('/readContactById', (req, res) => {
-            contactControl.readContactById(req, res)
-        })
-        app.get('/readDeletedContacts', (req, res) => {
-            contactControl.readDeletedContacts(req, res)
+        app.get('/readDeletedContacts', async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                contactControl.readDeletedContacts(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) } 
         })
     // UPDATE
-        app.put("/updateContact", (req, res) => {
-            contactControl.updateContact(req, res)
+        app.put("/updateContact", async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                contactControl.updateContact(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) }
         })
     // DELETE
-        app.put('/deleteContact', (req, res) => {
-            contactControl.deleteContact(req, res)
+        app.put('/deleteContact', async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                contactControl.deleteContact(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) }
         })
 
 // Product
     // image
         app.post('/image', uploadedImage, async (req, res) => {
-            const { productId } = req.body;
-            if(req.file) {
-                try {
-                    await pool.query(`INSERT INTO photos(product_id, image_src) VALUEs (${productId}, ${fileName})`);
-                    res.status(200).send({ message: 'Uploaded' });
-                } catch (e) {
-                    console.log("Ocorreu um erro na conexão.\n" + e);
-                    res.send({ message: 'Upload failed'})
-                }
-            } 
-            else res.send({ message: 'Upload failed'})
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                const { productId } = req.body;
+                if(req.file) {
+                    try {
+                        await pool.query(`INSERT INTO photos(product_id, image_src) VALUEs (${productId}, ${fileName})`);
+                        res.status(200).send({ message: 'Uploaded' });
+                    } catch (e) {
+                        console.log("Ocorreu um erro na conexão.\n" + e);
+                        res.send({ message: 'Upload failed'})
+                    }
+                } else res.send({ message: 'Upload failed'})
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) } 
+
+            
         })
     // Add product to cart
-        app.post('/addToCart', (req, res) => {
-            sessionControl.updateCart(req, res)
+        app.post('/addToCart', async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                sessionControl.addToCart(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) }
+        })
+    // Remove product from cart
+        app.post('/deleteFromCart', async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                sessionControl.deleteFromCart(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) }
         })
     // CREATE
-        app.post('/createProduct', (req, res) => {
-            productControl.createProduct(req, res)
+        app.post('/createProduct', async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                productControl.createProduct(req, res)}
+            else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'})
+            }
         })
     // READ
-        app.get('/readAllProducts', (req, res) => {
-            productControl.readAllProducts(req, res)
+        app.get('/readAllProducts', async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                productControl.readAllProducts(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) }
         })
-        app.get('/readStoreProducts', (req, res) => {
-            productControl.readStoreProducts(req, res)
+        app.get('/readStoreProducts', async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                productControl.readStoreProducts(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) }
         })
-        app.get('/readProductById', (req, res) => {
-            productControl.readProductById(req, res)
+        app.get('/readProductById', async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                productControl.readProductById(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) }
         })
-        app.get('/readDeletedProducts', (req, res) => {
-            productControl.readDeletedProducts(req, res)
+        app.get('/readDeletedProducts', async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                productControl.readDeletedProducts(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) }
         })
     // UPDATE
-        app.put("/updateProduct", (req, res) => {
-            productControl.updateProduct(req, res)
+        app.put("/updateProduct", async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                productControl.updateProduct(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) }
         })
     // DELETE
-        app.put('/deleteProduct', (req, res) => {
-            productControl.deleteProduct(req, res)
+        app.put('/deleteProduct', async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                productControl.deleteProduct(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) }
         })
 
 // Session
@@ -143,88 +289,85 @@ app.use(cookieParser())
             sessionControl.login(req, res)
         })
 
-// Size
-    // CREATE
-        app.post('/createSize', (req, res, next) => {
-            sizeControl.createSize(req, res, next)
-        })
-    // READ
-        app.get('/readAllSizes', (req, res) => {
-            sizeControl.readAllSizes(req, res)
-        })
-        app.get('/readSizeById', (req, res) => {
-            sizeControl.readSizeById(req, res)
-        })
-        app.get('/readDeletedSizes', (req, res) => {
-            sizeControl.readDeletedSizes(req, res)
-        })
-    // UPDATE
-        app.put("/updateSize", (req, res) => {
-            sizeControl.updateSize(req, res)
-        })
-    // DELETE
-        app.put('/deleteSize', (req, res) => {
-            sizeControl.deleteSize(req, res)
-        })
-
-// Store
-    // CREATE
-            app.post('/createStore', (req, res) => {
-                storeControl.createStore(req, res)
-            })
-    // READ
-        app.get('/readAllStores', (req, res) => {
-            storeControl.readAllStores(req, res)
-        })
-        app.get('/readStoreProducts', (req, res) => {
-            storeControl.readStoreProducts(req, res)
-        })
-        app.get('/readStoreById', (req, res) => {
-            storeControl.readStoreById(req, res)
-        })
-        app.get('/readDeletedStores', (req, res) => {
-            storeControl.readDeletedStores(req, res)
-        })
-    // UPDATE
-        app.put("/updateStore", (req, res) => {
-            storeControl.updateStore(req, res)
-        })
-    // DELETE
-        app.put('/deleteStore', (req, res) => {
-            storeControl.deleteStore(req, res)
-        })
-
 // User
     // CREATE
-            app.post('/createUser', (req, res) => {
+            app.post('/createUser', async (req, res) => {
+                const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
                 userControl.createUser(req, res);
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) }
             })
     // READ
-        app.get('/readAllUsers', (req, res) => {
-            userControl.readAllUsers(req, res)
+        app.get('/readAllUsers', async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                userControl.readAllUsers(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) }
         })
-        app.get('/readUserById', (req, res) => {
-            userControl.readUserById(req, res)
+        app.get('/readUserById', async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                userControl.readUserById(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) }
         })
         // findUser
                     // localhost:3000/readUserByName?name=Alvito+Peralta
-            app.get('/findUser', (req, res) => {
+            app.get('/findUser', async (req, res) => {
+                const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
                 userControl.findUser(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) }
             })
-            app.get('/readUserByCPF', (req, res) => {
+            app.get('/readUserByCPF', async (req, res) => {
+                const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
                 userControl.readUserByCPF(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) }
             })
         // Deleted
-            app.get('/readDeletedUsers', (req, res) => {
+            app.get('/readDeletedUsers', async (req, res) => {
+                const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
                 userControl.readDeletedUsers(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) }
             })
     // UPDATE
-        app.put("/updateUser", (req, res) => {
-            userControl.updateUser(req, res)
+        app.put("/updateUser", async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                userControl.updateUser(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) }
         })
     // DELETE
-        app.put('/deleteUser', (req, res) => {
-            userControl.deleteUser(req, res)
+        app.put('/deleteUser', async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                userControl.deleteUser(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) }
         })
 
 app.listen(port, () =>
