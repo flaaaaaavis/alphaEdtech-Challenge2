@@ -4,19 +4,31 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <link rel="stylesheet" href="./styles/createUser.css">
         <title>de Saco Cheio</title>
     </head>
     <body>
-        <form action="/createUser" method="post">
-            Name: <input type="text" name="name" maxlength="50"><br />
-            CPF: <input type="text" name="cpf" maxlength="11"><br />
-            Birthdate: <input type="date" name="birthdate"><br />
-            Email: <input type="text" name="email"><br />
-            DDD: <input type="text" name="ddd" maxlength="2"><br />
-            Phone: <input type="text" name="phone" maxlength="9"><br />
-            Password: <input type="password" name="password"><br />
-            <input type="submit" value="submit">
-        </form>
+        <div id="form-cadastro">
+            <h2>Cadastro de usuário</h2>
+            <label>Nome</label>
+            <input type="text" name="nome" id="nome">
+            <label>CPF</label>
+            <input type="text" name="cpf" id="cpf">
+            <label>Data nascimento</label>
+            <input type="date" name="dtnasc" id="dtnasc">
+            <label>Senha</label>
+            <input type="password" name="senha" id="senha">
+            <hr>
+            <label>Email</label>
+            <input type="email" name="email" id="email">
+            <label>DDD</label>
+            <input type="text" name="ddd" id="ddd">
+            <label>Fone</label>
+            <input type="text" name="phone" id="phone">
+            
+            <!-- chama função para salvar usuario -->
+            <button onclick="saveUser()">Salvar</button>
+        </div>
     </body>
+    <script src="scripts/users-script.js"></script>
 </html>
