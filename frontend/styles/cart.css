@@ -14,7 +14,7 @@ body {
     background-color: #f3f1d6;
 }
 
-input {
+input, select {
     font-size: 20px;
 }
 
@@ -99,4 +99,27 @@ input {
 
 #resumo-pedido > #preco > p {
     font-size: 24px;
+}
+
+#resumo-pedido > .tipo-entrega {
+    width: 100%;
+    font-size: 18px;
+    margin-bottom: 4px;
+    font-size: 20px;
+    text-align: center;
+}
+
+#resumo-pedido > .tipo-entrega > input {
+    height: 20px;
+    width: 20px;
+}
+
+#resumo-pedido > .pagamento {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+#resumo-pedido > .pagamento > input, select {
+    height: 40px;
 }

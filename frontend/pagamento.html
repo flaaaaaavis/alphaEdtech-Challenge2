@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://releases.transloadit.com/uppy/v2.9.3/uppy.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="./styles/cart.css">
+
+        <title>Carrinho</title>
+    </head>
+    <body>
+        <div id="carrinho">
+            <div class="item-cart">
+                <img src="imgs/sacola-1.png">
+                <div id="descricao">
+                    <p>Sacolas coloridas</p>
+                    <p>Kit com 4 unidades de sacolas coloridas de papelão</p>
+                </div>
+            </div>
+            <div class="item-cart">
+                <img src="imgs/sacola-2.png">
+                <div id="descricao">
+                    <p>Sacolas brancas</p>
+                    <p>Sacola plastica 30x40</p>
+                </div>
+            </div>
+            <div class="item-cart">
+                <img src="imgs/sacola-4.png">
+                <div id="descricao">
+                    <p>Sacolas plastica coloridas</p>
+                    <p>Kit com 4 unidades de sacolas plasticas coloridas</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="resumo-pedido">
+            <label>Pagamento</label>
+            
+            <br><br>
+            
+            <div class="pagamento">
+                Número do cartão <input type="text" name="cartao">
+            </div>
+
+            <div class="pagamento">
+                Nome no cartão <input type="text" name="nome-cartao">
+            </div>
+
+            <div class="pagamento">
+                Validade <input type="text" name="validade">
+            </div>
+
+            <div class="pagamento">
+                CVV <input type="text" name="cvv">
+            </div>
+
+            <div class="pagamento">
+                Parcelas 
+                <select name="parcelas" id="">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <br>
+            
+
+            <br /><br />
+
+            <input type="hidden" name="userId" value="">
+
+            <input type="submit" value="Continuar">
+        </div>
+    </body>
+</html>
