@@ -2,19 +2,7 @@ const pool = require('../database')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 require('dotenv').config()
-
-// sessions [
-//     {
-//         sessionId: ,
-//         userId: ,
-//         cart: [productId, productId, productId],
-//     },
-//     {
-//         sessionId: ,
-//         userId: ,
-//         cart: [productId, productId, productId]
-//     },
-// ]
+const fs = require('fs')
 
 class session {
     createToken(_token) {
@@ -74,6 +62,17 @@ class session {
             res.status(401).send( { message: 'Try again'} ).end();
             await pool.query(`COMMIT;`);
         }   
+    }
+    updateCart(req, res) {
+        const { userId, productId } = req.body;
+        let cart = JSON.parse(fs.readFileSync("../cart.json", "utf8"))
+
+        if(cart[`'${userId}'`] === undefined) {
+            cart[`'${userId}'`] = []
+        }
+        
+        cart[`'${userId}'`].push(productId)
+        fs.writeFileSync('cart.json', JSON.stringify(cart))
     }
 }
 

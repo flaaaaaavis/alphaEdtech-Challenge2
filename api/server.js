@@ -107,10 +107,14 @@ app.use(cookieParser())
             } 
             else res.send({ message: 'Upload failed'})
         })
+    // Add product to cart
+        app.post('/addToCart', (req, res) => {
+            sessionControl.updateCart(req, res)
+        })
     // CREATE
-            app.post('/createProduct', (req, res) => {
-                productControl.createProduct(req, res)
-            })
+        app.post('/createProduct', (req, res) => {
+            productControl.createProduct(req, res)
+        })
     // READ
         app.get('/readAllProducts', (req, res) => {
             productControl.readAllProducts(req, res)
