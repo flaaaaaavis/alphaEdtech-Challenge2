@@ -1,113 +1,68 @@
-let apiURL = 'http://localhost:3000/';
-let esc = 0;
+const apiURL = 'http://localhost:3000/';
 
-document.getElementById("create").addEventListener('click', () => {
-    esc = 1;
-})
-document.getElementById("update").addEventListener('click', () => {
-    esc = 2;
-})
-document.getElementById("delete").addEventListener('click', () => {
-    esc = 3;
-})
+function searchFor(req, res) {
+    const dataType = document.getElementById('searchBy').value;
+    const dataContent = document.getElementById('content').value;
 
-let form = document.getElementById("form")
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
-  
-    let name = form.elements[0].value;
-    let cpf = form.elements[1].value;
-    let user = form.elements[2].value;
-    let pass = form.elements[3].value;
-    let admin_ong = document.getElementsByName("account-type")
-    let account = ''
-    for (var i = 0; i < admin_ong.length; i++) {
-        if (admin_ong[i].checked) {
-            account = admin_ong[i].value;
-        }
-    }[0].value;
-    console.log(account);
-    switch(esc) {
-        case 1:
-            createAc(name, cpf, user, pass, account);
-            break;
-        case 2:
-            updateAc(name, cpf, user, pass, account);
-            break;
-        case 3:
-            deleteAc(user, pass);
-    }  
-})
+    fetch(apiURL+'/search', {
+        method: "get",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            searchType: dataType,
+            searchContent: dataContent
+        })
+    }).then(res => {
+        const response = res;
+        const main = document.getElementsByTagName('main')
 
-function updateAc(name, cpf, user, pass, account){
-    const options = {
-        method: 'PUT',
-        body: JSON.stringify({name, cpf, user, pass, account}),
-        headers: { 'Content-Type': 'application/json' }
-    }
+        for( let i = 0; i < response.length; i++ ){
+            const productId = response[i].product_id; 
+            const name = response[i].name;
+            const value = response[i].value;
+            const model = response[i].model;
+            const height = response[i].height;
+            const width = response[i].width;
+            const depth = response[i].depth;
 
-    fetch( apiURL + 'update', options)
-    .then(response => {
-        if (response.status === 500) {
-            return new Error('Error!')
-        }
+            fetch(apiURL+'/search2', {
+                method: "get",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    product_id: productId
+                })
+            }).then(res => {
+                const imageSrc = res.body.image_src;
+
+                const text = `
+                <div class="product-card">
+                    <form>
+                        <img class="product-card-image" src="${imageSrc}">
+                        <h4 class="product-card-name">${name}</h4>
+                        <h5 class="product-card-value">${value}</h5>
+                        <h5 class="product-card-model">${model}</h5>
+                        <p class="product-card-size">
+                            <span class="product-card-width">${width}</span>
+                            x
+                            <span class="product-card-height">${height}</span>
+                            x
+                            <span class="product-card-depth">${depth}</span>
+                        </p>
         
-        return response.text()
-    })
-    .then(data => {
-        console.log(data);
-    })
-    .catch(err => {
-        console.log(err);
-    })
-}
-
-function createAc(name, cpf, user, pass){
-    
-    const options = {
-        method: 'POST',
-        body: JSON.stringify({name, cpf, user, pass}),
-        headers: { 'Content-Type': 'application/json' }
-    }
-
-    fetch( apiURL + 'createUser', options)
-    .then(response => {
-        if (response.status === 500) {
-            return new Error('Error!')
-        }
-        if (response.status === 200) {
-            return new Error('Nome de usuário ou cpf ja existente!')
-        }
-        return response.text()
-    })
-    .then(data => {
-        console.log(data);
-    })
-    .catch(err => {
-        console.log(err);
-    })
-}
-
-function deleteAc(user, pass){
-    
-    const options = {
-        method: 'PUT',
-        body: JSON.stringify({user, pass}),
-        headers: { 'Content-Type': 'application/json' }
-    }
-
-    fetch( apiURL + 'delete/', options)
-    .then(response => {
-        if (response.status === 500) {
-            return new Error('Error!')
+                        <input type="hidden" name="productId" value="${productId}">
+                        <input type="hidden" name="userId" value="10">
+        
+                        <img src="imgs/add_shopping_cart_FILL0_wght400_GRAD0_opsz48.svg" onclick="addItem()">
+                    </form>
+                </div>
+                `;
+                main.appendChild(text);
+            })
         }
 
-        return response.text()
-    })
-    .then(data => {
-        console.log(data);
-    })
-    .catch(err => {
-        console.log(err);
-    })
+        if (response.status !== 200) {
+            alert("Falha no login")
+        } else {
+            window.location.assign('../index-logged-in.html');
+        }
+    });
 }

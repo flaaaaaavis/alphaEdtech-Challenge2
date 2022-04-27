@@ -116,7 +116,12 @@ function authToken(req, res, next) {
             
         })
     // Search products
-        
+        app.get('/search', (req, res) => {
+            search(req, res);
+        })
+        app.get('/search2', (req, res) => {
+            search2(req, res);
+        })
     // CREATE
         app.post('/createProduct', authToken, (req, res) => {
             productControl.createProduct(req, res)

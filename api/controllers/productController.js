@@ -78,6 +78,32 @@ class product {
             console.log("Ocorreu um erro na conexão.\n" + e);
         }
     }
+    async search(req, res) {
+        const { searchType, searchContent } = req.body;
+
+        try {
+            await pool.query('BEGIN TRANSACTION;');
+            const data = await pool.query(`SELECT * FROM products WHERE ${searchType} = '${searchContent}';`);
+            await pool.query('COMMIT;');
+            res.status(201).send(data);
+        } catch (error) {
+            console.log(error);
+            res.status(401).send(error);
+        }
+    }
+    async search2(req, res) {
+        const { productId } = req.body;
+
+        try {
+            await pool.query('BEGIN TRANSACTION;');
+            const data = await pool.query(`SELECT * FROM photos WHERE product_id = '${productId}';`);
+            await pool.query('COMMIT;');
+            res.status(201).send(data);
+        } catch (error) {
+            console.log(error);
+            res.status(401).send(error);
+        }
+    }
 }
 
 
