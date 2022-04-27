@@ -34,14 +34,14 @@ function login() {
         method: "post",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            email: email.value,
-            password: senha.value
+            email: `${email.value}`,
+            password: `${senha.value}`
         })
     }).then(response => {
-        console.log(response)
         if (response.status !== 200) {
             alert("Falha no login")
         } else {
+            cookieStore.set('token', response.token);
             window.location.assign('../index-logged-in.html');
         }
     });
@@ -50,15 +50,9 @@ function login() {
 function logout() {
     fetch(apiURL+'logout', {
         method: "get",
-        headers: { 'Content-Type': 'application/json' },
-    }).then(response => {
-        console.log(response)
-        if (response.status !== 200) {
-            alert("Falha no login")
-        } else {
-            window.location.assign('../index-logged-in.html');
-        }
-    });
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then( window.location.assign('../index.html'));
 }
 
 /**

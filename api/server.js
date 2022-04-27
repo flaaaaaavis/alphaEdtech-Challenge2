@@ -21,14 +21,16 @@ const storage = multer.diskStorage({
 const uploadedImage = multer({storage}).single('photo');
 
 // Controlers
+const auth = require('./controllers/authController')
+const authControl = new auth()
 const address = require('./controllers/addressController')
 const addressControl = new address()
 const contact = require('./controllers/contactController')
 const contactControl = new contact()
 const product = require('./controllers/productController')
 const productControl = new product()
-const session = require('./controllers/sessionController')
-const sessionControl = new session()
+const sessionController = require('./controllers/sessionController')
+const sessionControl = new sessionController.session()
 const user = require('./controllers/userController')
 const userControl = new user()
 
@@ -44,6 +46,8 @@ function authToken(req, res, next) {
     if(result) next()
     else res.status(401)
 }
+
+app.get('/index-logged-in.html', authToken, () => window.location.assign('../index-logged-in.html'))
 
 // Address
     // CREATE
@@ -96,7 +100,7 @@ function authToken(req, res, next) {
 // Product
     // image
         app.post('/image', uploadedImage, async (req, res) => {
-            const testToken = await sessionControl.validateToken(req, res);
+            const testToken = await authControl.validateToken(req, res);
             if (testToken) {
                 const { productId } = req.body;
                 if(req.file) {
@@ -146,15 +150,18 @@ function authToken(req, res, next) {
             productControl.deleteProduct(req, res)
         })
 
-// Session
+// Auth
     // Login
         app.post('/login', (req, res) => {
-            sessionControl.login(req, res)
+            authControl.login(req, res)
         })
     // Logout
-    app.post('/logout', (req, res) => {
-        sessionControl.logout(req, res)
-    })
+        app.get('/logout', (req, res) => {
+            authControl.logout(req, res)
+        })
+
+// Session
+
 
 // User
     // CREATE
