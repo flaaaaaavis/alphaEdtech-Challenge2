@@ -2,7 +2,8 @@ const pool = require('../database')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 require('dotenv').config()
-const fs = require('fs')
+
+const cartControl = require('./cart')
 
 class session {
     createToken(_token) {
@@ -14,6 +15,7 @@ class session {
     };
     async validateToken(req, res) {
         const cookieToken = req.cookies.token;
+        console.log(` token: ${cookieToken}`);
         try {
             if(cookieToken) {
                 const result = jwt.verify(cookieToken, process.env.SECRET);
@@ -31,6 +33,7 @@ class session {
     async login(req, res) {
         const { email, password } = req.body;
         const testToken = await this.validateToken(req, res);
+        console.log(` testoken: ${testToken}`);
         try {
             await pool.query(`BEGIN TRANSACTION;`);
             const dbEmail = await pool.query(`SELECT * FROM contacts WHERE email = '${email}';`);
@@ -66,28 +69,19 @@ class session {
     }
     addToCart(req, res) {
         const { userId, productId } = req.body;
-        let cart = JSON.parse(fs.readFileSync("../cart.json", "utf8"))
-
-        if(cart[`'${userId}'`] === undefined) {
-            cart[`'${userId}'`] = []
+        if(cartControl[userId] === undefined) {
+            cartControl[userId] = []
         }
-        
-        cart[`'${userId}'`].push(productId)
-        fs.writeFileSync('cart.json', JSON.stringify(cart))
+        cartControl[userId].push(productId)
     }
     deleteFromCart(req, res) {
         const { userId, productId } = req.body;
-        let cart = JSON.parse(fs.readFileSync("../cart.json", "utf8"))
-
-        for( let i = 0; i < userId.length; i++){ 
-            if ( userId[i] === productId) { 
-                userId.splice(i, 1); 
+        for( let i = 0; i < userId.length; i++ ){ 
+            if( userId[i] === productId ) {
+                userId.splice(i, 1);
             }
         }
-
-        fs.writeFileSync('cart.json', JSON.stringify(cart))
-
     }
 }
 
-module.exports = session;
+module.exports = [cartControl, session];

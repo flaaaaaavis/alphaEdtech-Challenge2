@@ -3,9 +3,6 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 require('dotenv').config()
 
-const session = require('./sessionController')
-const sessionControl = new session()
-
 class user {
     async createUser(req, res) {
         const { name, cpf, birthdate, email, password, ddd, phone } = req.body;
