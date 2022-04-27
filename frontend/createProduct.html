@@ -14,21 +14,23 @@
         <div id="drag-drop-area"></div>
 
         <div id="form-cadastro">
-            <form action="/createProduct" method="POST">
-                Nome: <input type="text" name="name">
-                <br />
-                Descrição: <input type="text" name="description">
-                <br />
-                Modelo: <input type="text" name="model">
-                <br />
+            Nome: <input type="text" id="name">
+            <br />
+            Descrição: <input type="text" id="description">
+            <br />
+            Modelo: <input type="text" id="model">
+            <br />
+            Valor: <input type="text" id="value">
+            <br />
 
-                <input type="hidden" name="userId" value="">
+            <input type="hidden" id="userId" value="">
 
-                <input type="submit" value="SUBMIT">
-            </form>
+            <!-- chama função para salvar usuario -->
+            <button onclick="saveProduct()">Salvar</button>
         </div>
 
         <script src="https://releases.transloadit.com/uppy/v2.9.3/uppy.min.js"></script>
         <script src="./scripts/image-upload.js"></script>
     </body>
+    <script src="scripts/product-script.js"></script>
 </html>

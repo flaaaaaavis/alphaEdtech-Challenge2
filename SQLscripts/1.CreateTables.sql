@@ -18,9 +18,9 @@ CREATE TABLE public.products (
 	"value" money NOT NULL,
 	"description" text NOT NULL,
 	"model" varchar(30) NOT NULL,
-	"height" integer NOT NULL,
-	"width" integer NOT NULL,
-	"depth" integer NOT NULL,
+	"height" integer NULL,
+	"width" integer NULL,
+	"depth" integer NULL,
 	"user_id" integer,
 	"deleted" BOOLEAN NOT NULL DEFAULT 'false',
 	CONSTRAINT "products_pk" PRIMARY KEY ("product_id")

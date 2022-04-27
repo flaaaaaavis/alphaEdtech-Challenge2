@@ -36,3 +36,11 @@ input {
 #form-cadastro > form > input {
     height: 40px;
 }
+
+#form-cadastro > button {
+    background-color: #629051;
+    height: 40px;
+    width: 100px;
+    color: white;
+    align-self: center;
+}

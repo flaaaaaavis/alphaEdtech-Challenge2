@@ -16,23 +16,20 @@ body {
     min-height: 100vh;
 }
 
-.carousel-imagens {
-    display: flex;
-    width: 100vw;
-    margin-top: 50px;
-    margin-bottom: 10px;
-
-}
-
 .sub-item {
     width: 150px;
     height: 150px;
+    margin-right: 100px;
+}
+
+.sub-item:last-child {
+    margin-right: 0;
 }
 
 .row-image {
     display: flex;
-    justify-content: space-evenly;
-    align-items: space-between;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .header {
@@ -47,10 +44,19 @@ body {
     align-items: center;
 
     background-color: #47693A;
-    box-shadow: 0px 4px 4px 0px #00000040;
+    box-shadow: 0px 4px 4px 0px #000000;
+}
+
+#carouselIndicators {
+    margin-top: 50px;
 }
 
 .header > a {
+    color: white;
+    text-decoration: white;
+}
+
+.header > a:hover {
     color: white;
     text-decoration: white;
 }
@@ -129,8 +135,8 @@ body {
 #mais-vendidos {
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 50px;
+    margin-bottom: 50px;
     justify-content: center;
     align-items: center;
 }
@@ -144,7 +150,8 @@ body {
 #lancamentos {
     display: flex;
     flex-direction: column;
-    margin-bottom: 50px;
+    margin-top: 50px;
+    margin-bottom: 100px;
     justify-content: center;
     align-items: center;
 }
@@ -320,39 +327,11 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
     margin-top: 30px;
 }
 
-#footer-contato {
-    display: flex;
-    flex-direction: column;
-    margin-right: 30px;
-    margin-left: 30px;
-}
-
-#footer-contato > .logo {
-    width: 50px;
-    height: 50px;
-}
-
-#footer-contato > p {
-    font-size: 12px;
-}
-
-#footer-institucional {
-    display: flex;
-    flex-direction: column;
-}
-
-#footer-institucional,
-#footer-pagamento,
-#footer-seguranca > span {
-    font-weight: bold;
-}
-
-#footer-institucional > a {
-    font-size: 12px;
-    text-decoration: none;
-    color: black;
-    font-weight: normal;
+.footer > .logo {
+    width: 100px;
+    height: 100px;
 }
