@@ -95,7 +95,7 @@ function authToken(req, res, next) {
 
 // Product
     // image
-        app.post('/image', uploadedImage, (req, res) => {
+        app.post('/image', uploadedImage, async (req, res) => {
             const testToken = await sessionControl.validateToken(req, res);
             if (testToken) {
                 const { productId } = req.body;
@@ -115,14 +115,8 @@ function authToken(req, res, next) {
 
             
         })
-    // Add product to cart
-        app.post('/addToCart', authToken, (req, res) => {
-            sessionControl.addToCart(req, res)
-        })
-    // Remove product from cart
-        app.post('/deleteFromCart', authToken, (req, res) => {
-            sessionControl.deleteFromCart(req, res)
-        })
+    // Search products
+        
     // CREATE
         app.post('/createProduct', authToken, (req, res) => {
             productControl.createProduct(req, res)
@@ -131,9 +125,10 @@ function authToken(req, res, next) {
         app.get('/readAllProducts', authToken, (req, res) => {
             productControl.readAllProducts(req, res)
         })
-        app.get('/readProductById', authToken, (req, res) => {
-            productControl.readProductById(req, res)
-        })
+        // Get product page
+            app.get('/readProductById', authToken, (req, res) => {
+                productControl.readProductById(req, res)
+            })
         app.get('/readDeletedProducts', authToken, (req, res) => {
             productControl.readDeletedProducts(req, res)
         })

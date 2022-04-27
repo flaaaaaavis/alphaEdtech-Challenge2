@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 require('dotenv').config()
 
-const cartControl = require('./cart')
+const cartControl = require('../../frontend/scripts/cart')
 
 class session {
     createToken(_token) {
@@ -67,21 +67,21 @@ class session {
             await pool.query(`COMMIT;`);
         }   
     }
-    addToCart(req, res) {
-        const { userId, productId } = req.body;
-        if(cartControl[userId] === undefined) {
-            cartControl[userId] = []
-        }
-        cartControl[userId].push(productId)
-    }
-    deleteFromCart(req, res) {
-        const { userId, productId } = req.body;
-        for( let i = 0; i < userId.length; i++ ){ 
-            if( userId[i] === productId ) {
-                userId.splice(i, 1);
-            }
-        }
-    }
+    // addToCart(req, res) {
+    //     const { userId, productId } = req.body;
+    //     if(cartControl[userId] === undefined) {
+    //         cartControl[userId] = []
+    //     }
+    //     cartControl[userId].push(productId)
+    // }
+    // deleteFromCart(req, res) {
+    //     const { userId, productId } = req.body;
+    //     for( let i = 0; i < userId.length; i++ ){ 
+    //         if( userId[i] === productId ) {
+    //             userId.splice(i, 1);
+    //         }
+    //     }
+    // }
 }
 
-module.exports = [cartControl, session];
+module.exports = session;

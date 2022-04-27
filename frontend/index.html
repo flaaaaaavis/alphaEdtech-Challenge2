@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="styles/product-card.css">
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
@@ -66,18 +67,27 @@
 
             <div id="info-compra">
                 <div>
-                    <p>Enviamos suas compras</p>
-                    <p>Entrega em todo país</p>
+                    <img src="imgs/local_shipping_FILL0_wght400_GRAD0_opsz48.svg" alt="">
+                    <div>
+                        <p>Enviamos suas compras</p>
+                        <p>Entrega em todo país</p>
+                    </div>
                 </div>
 
                 <div>
-                    <p>Pague como quiser</p>
-                    <p>Cartões de crédito ou a vista</p>
+                    <img src="imgs/credit_card_FILL0_wght400_GRAD0_opsz48.svg" alt="">
+                    <div>
+                        <p>Pague como quiser</p>
+                        <p>Cartões de crédito ou a vista</p>
+                    </div>
                 </div>
 
                 <div>
-                    <p>Compre com segurança</p>
-                    <p>Seus dados sempre protegidos</p>
+                    <img src="imgs/lock_FILL0_wght400_GRAD0_opsz48.svg" alt="">
+                    <div>
+                        <p>Compre com segurança</p>
+                        <p>Seus dados sempre protegidos</p>
+                    </div>
                 </div>
             </div>
 
@@ -91,20 +101,60 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <div class="row-image">
-                                <img class="d-block w-100 sub-item" src="./imgs/sacola-1.png">
-                                <img class="d-block w-100 sub-item" src="./imgs/sacola-2.png">
-                                <img class="d-block w-100 sub-item" src="./imgs/sacola-3.png">
-                                <img class="d-block w-100 sub-item" src="./imgs/sacola-4.png">
-                                <img class="d-block w-100 sub-item" src="./imgs/sacola-8.png">
+                                <form class="index-product">
+                                    <img class="d-block w-100 sub-item index-product-image" src="./imgs/sacola-1.png" onclick="openProductInfo()">
+                                    
+                                    <input type="hidden" name="productId" value="">
+                                </form>
+                                <form class="index-product">
+                                    <img class="d-block w-100 sub-item index-product-image" src="./imgs/sacola-2.png" onclick="openProductInfo()">
+                                    
+                                    <input type="hidden" name="productId" value="">
+                                </form>
+                                <form class="index-product">
+                                    <img class="d-block w-100 sub-item index-product-image" src="./imgs/sacola-3.png" onclick="openProductInfo()">
+                                    
+                                    <input type="hidden" name="productId" value="">
+                                </form>
+                                <form class="index-product">
+                                    <img class="d-block w-100 sub-item index-product-image" src="./imgs/sacola-4.png" onclick="openProductInfo()">
+                                    
+                                    <input type="hidden" name="productId" value="">
+                                </form>
+                                <form class="index-product">
+                                    <img class="d-block w-100 sub-item index-product-image" src="./imgs/sacola-8.png" onclick="openProductInfo()">
+                                    
+                                    <input type="hidden" name="productId" value="">
+                                </form>
                             </div>
                         </div>
                         <div class="carousel-item">
                             <div class="row-image">
-                                <img class="d-block w-100 sub-item" src="./imgs/sacola-1.png">
-                                <img class="d-block w-100 sub-item" src="./imgs/sacola-2.png">
-                                <img class="d-block w-100 sub-item" src="./imgs/sacola-3.png">
-                                <img class="d-block w-100 sub-item" src="./imgs/sacola-4.png">
-                                <img class="d-block w-100 sub-item" src="./imgs/sacola-8.png">
+                                <form class="index-product">
+                                    <img class="d-block w-100 sub-item index-product-image" src="./imgs/sacola-1.png" onclick="openProductInfo()">
+                                    
+                                    <input type="hidden" name="productId" value="">
+                                </form>
+                                <form class="index-product">
+                                    <img class="d-block w-100 sub-item index-product-image" src="./imgs/sacola-2.png" onclick="openProductInfo()">
+                                    
+                                    <input type="hidden" name="productId" value="">
+                                </form>
+                                <form class="index-product">
+                                    <img class="d-block w-100 sub-item index-product-image" src="./imgs/sacola-3.png" onclick="openProductInfo()">
+                                    
+                                    <input type="hidden" name="productId" value="">
+                                </form>
+                                <form class="index-product">
+                                    <img class="d-block w-100 sub-item index-product-image" src="./imgs/sacola-4.png" onclick="openProductInfo()">
+                                    
+                                    <input type="hidden" name="productId" value="">
+                                </form>
+                                <form class="index-product">
+                                    <img class="d-block w-100 sub-item index-product-image" src="./imgs/sacola-8.png" onclick="openProductInfo()">
+                                    
+                                    <input type="hidden" name="productId" value="">
+                                </form>
                             </div>
                         </div>
                     </div>

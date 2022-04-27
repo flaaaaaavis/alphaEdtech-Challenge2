@@ -19,3 +19,8 @@ Content-type: application/json
     "logradouro": "ridigad378@leafzie.com",
     "number": "123456"
 }
+
+
+### 
+
+GET http://localhost:3000/readAllProducts

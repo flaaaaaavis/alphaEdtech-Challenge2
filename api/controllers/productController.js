@@ -1,8 +1,5 @@
 const pool = require('../database')
 
-const session = require('./sessionController')
-const sessionControl = new session()
-
 class product {
     async createProduct(req, res) {
         const productData = [req.body.name, req.body.value, req.body.description, req.body.model, req.body.height, req.body.width, req.body.depth, req.body.userId];
@@ -37,7 +34,7 @@ class product {
         }
     }
     async readProductById(req, res) {
-        const { id } = req.params;
+        const { id } = req.body;
         try {
             const product = await pool.query("SELECT * FROM products WHERE product_id = $1 AND DELETED = false", [id]);
             res.json(product.rows);

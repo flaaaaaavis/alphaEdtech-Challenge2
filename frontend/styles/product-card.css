@@ -1,0 +1,25 @@
+.index-product {
+    height: 30vh;
+    width: calc(30vh);
+
+    border: 2px solid red;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.index-product form {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.index-product-image {
+    width: 70%;
+}

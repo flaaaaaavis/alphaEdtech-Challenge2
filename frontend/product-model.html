@@ -1,53 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <div class="cart-product">
-        <form action="/deleteFromCart" method="POST">
-            <img class="cart-product-image" src="">
-            <h4 class="cart-product-name"></h4>
-            <h5 class="cart-product-value"></h5>
-            <p class="cart-product-size">
-                <span class="cart-product-width"></span>
-                x
-                <span class="cart-product-height"></span>
-                x
-                <span class="cart-product-depth"></span>
-            </p>
-            <p class="cart-product-description"></p>
+        <link rel="stylesheet" href="styles/product-card.css">
 
-            <input type="hidden" name="productId" value="">
-            <input type="hidden" name="userId" value="10">
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="cart-product">
+            <form>
+                <img class="cart-product-image" src="">
+                <h4 class="cart-product-name"></h4>
+                <h5 class="cart-product-value"></h5>
+                <p class="cart-product-size">
+                    <!-- <span class="cart-product-width"></span>
+                    x
+                    <span class="cart-product-height"></span>
+                    x
+                    <span class="cart-product-depth"></span> -->
+                </p>
+                <p class="cart-product-description"></p>
 
-            <input type="submit" value="REMOVER DO CARRINHO">
-        </form>
-    </div>
+                <input type="hidden" id="productId" value="">
+                <input type="hidden" id="userId" value="10">
 
-    <div class="index-product">
-        <form action="/addToCart" method="POST">
-            <img class="index-product-image" src="">
-            <h4 class="index-product-name"></h4>
-            <h5 class="index-product-value"></h5>
-            <p class="index-product-size">
-                <span class="index-product-width"></span>
-                x
-                <span class="index-product-height"></span>
-                x
-                <span class="index-product-depth"></span>
-            </p>
-            <p class="index-product-description"></p>
+                <!-- <img src="imgs/delete_FILL0_wght400_GRAD0_opsz48.svg" onclick="removeItem()"> -->
+            </form>
+        </div>
 
-            <input type="hidden" name="productId" value="">
-            <input type="hidden" name="userId" value="10">
+        <select name="" id="">
+            <option value="">name</option>
+            <option value="">model</option>
+            <option value="">value</option>
+            <option value="">width</option>
+            <option value="">height</option>
+        </select>
+        <input type="text">
 
-            <input type="submit" value="ADICIONAR AO CARRINHO">
-        </form>
-    </div>
-</body>
+        <div class="index-product">
+            <form>
+                <img class="index-product-image" src="./imgs/sacola-4.png" onclick="openProductInfo()">
+                
+                <input type="hidden" name="productId" value="">
+            </form>
+        </div>
+
+        <div class="product-card">
+            <form>
+                <img class="product-card-image" src="">
+                <h4 class="product-card-name"></h4>
+                <h5 class="product-card-value"></h5>
+                <p class="product-card-size">
+                    <!-- <span class="product-card-width"></span>
+                    x
+                    <span class="product-card-height"></span>
+                    x
+                    <span class="product-card-depth"></span> -->
+                </p>
+                <p class="product-card-description"></p>
+
+                <input type="hidden" name="productId" value="">
+                <input type="hidden" name="userId" value="10">
+
+                <!-- <img src="imgs/add_shopping_cart_FILL0_wght400_GRAD0_opsz48.svg" onclick="addItem()"> -->
+            </form>
+        </div>
+
+        <script src="scripts/product-script.js"></script>
+    </body>
 </html>
