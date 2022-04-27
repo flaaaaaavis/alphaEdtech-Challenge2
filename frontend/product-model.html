@@ -12,33 +12,26 @@
     <body>
         <div class="cart-product">
             <form>
-                <img class="cart-product-image" src="">
-                <h4 class="cart-product-name"></h4>
-                <h5 class="cart-product-value"></h5>
+                <img class="cart-product-image" src="imgs/sacola-4.png">
+                <h4 class="cart-product-name">Nome</h4>
+                <h5 class="cart-product-value">20,00</h5>
                 <p class="cart-product-size">
-                    <!-- <span class="cart-product-width"></span>
+                    <span class="cart-product-width">20</span>
                     x
-                    <span class="cart-product-height"></span>
+                    <span class="cart-product-height">10</span>
                     x
-                    <span class="cart-product-depth"></span> -->
+                    <span class="cart-product-depth">5</span>
                 </p>
                 <p class="cart-product-description"></p>
 
                 <input type="hidden" id="productId" value="">
                 <input type="hidden" id="userId" value="10">
 
-                <!-- <img src="imgs/delete_FILL0_wght400_GRAD0_opsz48.svg" onclick="removeItem()"> -->
+                <img class="cart-product-btn" src="imgs/delete_FILL0_wght400_GRAD0_opsz48.svg" onclick="removeItem()">
             </form>
         </div>
 
-        <select name="" id="">
-            <option value="">name</option>
-            <option value="">model</option>
-            <option value="">value</option>
-            <option value="">width</option>
-            <option value="">height</option>
-        </select>
-        <input type="text">
+        <hr>
 
         <div class="index-product">
             <form>
@@ -48,24 +41,33 @@
             </form>
         </div>
 
+        <hr>
+
         <div class="product-card">
             <form>
-                <img class="product-card-image" src="">
-                <h4 class="product-card-name"></h4>
-                <h5 class="product-card-value"></h5>
-                <p class="product-card-size">
-                    <!-- <span class="product-card-width"></span>
-                    x
-                    <span class="product-card-height"></span>
-                    x
-                    <span class="product-card-depth"></span> -->
-                </p>
-                <p class="product-card-description"></p>
+                <img class="product-card-image" src="imgs/sacola-4.png">
+                <div class="product-card-description">
+                    <h4 class="product-card-name">Nome</h4>
+                    <div class="teste">
+                        <h5 class="product-card-value">20,00</h5>
+                        <h5 class="product-card-model">Boca de palhaço</h5>
+                    </div>
+                    <div class="teste">
+                        <p class="product-card-size">
+                            <span class="product-card-width">10</span>
+                            x
+                            <span class="product-card-height">30</span>
+                            x
+                            <span class="product-card-depth">5</span>
+                        </p>
 
-                <input type="hidden" name="productId" value="">
-                <input type="hidden" name="userId" value="10">
+                        <input type="hidden" name="productId" value="">
+                        <input type="hidden" name="userId" value="10">
 
-                <!-- <img src="imgs/add_shopping_cart_FILL0_wght400_GRAD0_opsz48.svg" onclick="addItem()"> -->
+                        <img class="product-card-btn" src="imgs/add_shopping_cart_FILL0_wght400_GRAD0_opsz48.svg" onclick="addItem()">
+                    </div>
+                </div>
+                
             </form>
         </div>
 

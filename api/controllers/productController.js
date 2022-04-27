@@ -93,7 +93,6 @@ class product {
     }
     async search2(req, res) {
         const { productId } = req.body;
-
         try {
             await pool.query('BEGIN TRANSACTION;');
             const data = await pool.query(`SELECT * FROM photos WHERE product_id = '${productId}';`);

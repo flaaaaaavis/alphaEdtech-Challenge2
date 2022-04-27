@@ -1,19 +1,19 @@
 const apiURL = 'http://localhost:3000/';
 
-function searchFor(req, res) {
+async function searchFor() {
     const dataType = document.getElementById('searchBy').value;
     const dataContent = document.getElementById('content').value;
-
-    fetch(apiURL+'/search', {
-        method: "get",
+    console.log(dataType, dataContent);
+    await fetch(apiURL+'search', {
+        method: "post",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             searchType: dataType,
             searchContent: dataContent
         })
-    }).then(res => {
+    }).then( async res => {
         const response = res;
-        const main = document.getElementsByTagName('main')
+        const main = document.getElementById('middle')
 
         for( let i = 0; i < response.length; i++ ){
             const productId = response[i].product_id; 
@@ -24,16 +24,16 @@ function searchFor(req, res) {
             const width = response[i].width;
             const depth = response[i].depth;
 
-            fetch(apiURL+'/search2', {
-                method: "get",
+            await fetch(apiURL+'search2', {
+                method: "post",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     product_id: productId
                 })
-            }).then(res => {
+            }).then(async res => {
                 const imageSrc = res.body.image_src;
 
-                const text = `
+                let text = `
                 <div class="product-card">
                     <form>
                         <img class="product-card-image" src="${imageSrc}">
@@ -55,12 +55,12 @@ function searchFor(req, res) {
                     </form>
                 </div>
                 `;
-                main.appendChild(text);
+                main.innerHTML(text);
             })
         }
 
         if (response.status !== 200) {
-            alert("Falha no login")
+            console.log(response)
         } else {
             window.location.assign('../index-logged-in.html');
         }

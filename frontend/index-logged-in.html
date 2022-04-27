@@ -16,16 +16,18 @@
                 <img src="imgs/logo.svg" class="logo" />
 
                 <div id="buscar">
-                    <select name="searchBy" id="searchBy">
-                        <option value="" selected>Burcar por:</option>
-                        <option value="name">Nome</option>
-                        <option value="value">Valor</option>
-                        <option value="model">Modelo</option>
-                        <option value="height">Altura</option>
-                        <option value="width">Largura</option>
-                    </select>
-                    <input type="text" placeholder="Pesquisar" id="content">
-                    <img src="imgs/search_FILL0_wght400_GRAD0_opsz48.svg" onclick="searchFor()">
+                    <!-- <form> -->
+                        <select name="searchBy" id="searchBy">
+                            <option value="">Burcar por:</option>
+                            <option value="name" selected>Nome</option>
+                            <option value="value">Valor</option>
+                            <option value="model">Modelo</option>
+                            <option value="height">Altura</option>
+                            <option value="width">Largura</option>
+                        </select>
+                        <input type="text" placeholder="Pesquisar" id="content">
+                        <img src="imgs/search_FILL0_wght400_GRAD0_opsz48.svg" onclick="searchFor()">
+                    <!-- </form> -->
                 </div>
                 
                 <div id="btn-carrinho">
@@ -42,11 +44,87 @@
                 <a href="#">Sacolas brancas</a>
             </header>
 
-            <main>
+            <main id="middle">
 
             </main>
 
-            
+            <div id="mais-vendidos">
+                <p>Mais vendidos</p>
+                <div id="carouselMaisVendidos" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                    <li data-target="#carouselMaisVendidos" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselMaisVendidos" data-slide-to="1"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row-image">
+                                <form class="index-product">
+                                    <img class="d-block w-100 sub-item index-product-image" src="./imgs/sacola-1.png" onclick="openProductInfo()">
+                                    
+                                    <input type="hidden" name="productId" value="">
+                                </form>
+                                <form class="index-product">
+                                    <img class="d-block w-100 sub-item index-product-image" src="./imgs/sacola-2.png" onclick="openProductInfo()">
+                                    
+                                    <input type="hidden" name="productId" value="">
+                                </form>
+                                <form class="index-product">
+                                    <img class="d-block w-100 sub-item index-product-image" src="./imgs/sacola-3.png" onclick="openProductInfo()">
+                                    
+                                    <input type="hidden" name="productId" value="">
+                                </form>
+                                <form class="index-product">
+                                    <img class="d-block w-100 sub-item index-product-image" src="./imgs/sacola-4.png" onclick="openProductInfo()">
+                                    
+                                    <input type="hidden" name="productId" value="">
+                                </form>
+                                <form class="index-product">
+                                    <img class="d-block w-100 sub-item index-product-image" src="./imgs/sacola-8.png" onclick="openProductInfo()">
+                                    
+                                    <input type="hidden" name="productId" value="">
+                                </form>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row-image">
+                                <form class="index-product">
+                                    <img class="d-block w-100 sub-item index-product-image" src="./imgs/sacola-1.png" onclick="openProductInfo()">
+                                    
+                                    <input type="hidden" name="productId" value="">
+                                </form>
+                                <form class="index-product">
+                                    <img class="d-block w-100 sub-item index-product-image" src="./imgs/sacola-2.png" onclick="openProductInfo()">
+                                    
+                                    <input type="hidden" name="productId" value="">
+                                </form>
+                                <form class="index-product">
+                                    <img class="d-block w-100 sub-item index-product-image" src="./imgs/sacola-3.png" onclick="openProductInfo()">
+                                    
+                                    <input type="hidden" name="productId" value="">
+                                </form>
+                                <form class="index-product">
+                                    <img class="d-block w-100 sub-item index-product-image" src="./imgs/sacola-4.png" onclick="openProductInfo()">
+                                    
+                                    <input type="hidden" name="productId" value="">
+                                </form>
+                                <form class="index-product">
+                                    <img class="d-block w-100 sub-item index-product-image" src="./imgs/sacola-8.png" onclick="openProductInfo()">
+                                    
+                                    <input type="hidden" name="productId" value="">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselMaisVendidos" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Anterior</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselMaisVendidos" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Próximo</span>
+                    </a>
+                </div>
+            </div>
 
             <div id="depoimentos">
                 <p>Depoimentos dos clientes</p>
@@ -82,35 +160,17 @@
             </div>
 
             <footer class="footer">
-                <div id="footer-contato">
-                    <img src="imgs/logo.svg" class="logo" />
-                    <p>(73) 99164-8297<br>
-                    (87) 99619-7287<br>
-                    lojavirtual@desacocheio.com.br<br>
-                    Horário de funcionamento<br>Segunda a Sexta das 8h as 18h</p>
-                </div>
-                <div id="footer-institucional">
-                    <span>Institucional</span>
-                    <a href="#">Quem somos</a>
-                    <a href="#">Compra segura</a>
-                    <a href="#">Politica de privacidade</a>
-                    <a href="#">Trocas e devoluções</a>
-                    <a href="#">Formas de pagamento</a>
-                    <a href="#">Entrega</a>
-                    <a href="#">Central de atendimento</a>
-                </div>
-                <div id="footer-pagamento">
-                    <span>Pagamento</span>
-                </div>
-                <div id="footer-seguranca">
-                    <span>Segurança</span>
-                </div>
+                <img src="imgs/logo.svg" class="logo" />
+                <p>(73) 99164-8297</p>
+                <p>(87) 99619-7287</p>
+                <p>lojavirtual@desacocheio.com.br</p>
+                <p>Horário de funcionamento<br>Segunda a Sexta das 8h as 18h</p>
             </footer>
 
         <script src="scripts/script.js"></script>
         
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
     </body>
 </html>

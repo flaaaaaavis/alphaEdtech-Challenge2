@@ -116,11 +116,11 @@ function authToken(req, res, next) {
             
         })
     // Search products
-        app.get('/search', (req, res) => {
-            search(req, res);
+        app.post('/search', async (req, res) => {
+            productControl.search(req, res);
         })
-        app.get('/search2', (req, res) => {
-            search2(req, res);
+        app.post('/search2', async (req, res) => {
+            productControl.search2(req, res);
         })
     // CREATE
         app.post('/createProduct', authToken, (req, res) => {
