@@ -31,7 +31,6 @@ class session {
     async login(req, res) {
         const { email, password } = req.body;
         const testToken = await this.validateToken(req, res);
-        console.log(testToken);
         try {
             await pool.query(`BEGIN TRANSACTION;`);
             const dbEmail = await pool.query(`SELECT * FROM contacts WHERE email = '${email}';`);

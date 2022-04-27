@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="cart-product">
+        <form action="/deleteFromCart" method="POST">
+            <img class="cart-product-image" src="">
+            <h4 class="cart-product-name"></h4>
+            <h5 class="cart-product-value"></h5>
+            <p class="cart-product-size">
+                <span class="cart-product-width"></span>
+                x
+                <span class="cart-product-height"></span>
+                x
+                <span class="cart-product-depth"></span>
+            </p>
+            <p class="cart-product-description"></p>
+
+            <input type="hidden" name="productId" value="">
+            <input type="hidden" name="userId" value="10">
+
+            <input type="submit" value="REMOVER DO CARRINHO">
+        </form>
+    </div>
+
+    <div class="index-product">
+        <form action="/addToCart" method="POST">
+            <img class="index-product-image" src="">
+            <h4 class="index-product-name"></h4>
+            <h5 class="index-product-value"></h5>
+            <p class="index-product-size">
+                <span class="index-product-width"></span>
+                x
+                <span class="index-product-height"></span>
+                x
+                <span class="index-product-depth"></span>
+            </p>
+            <p class="index-product-description"></p>
+
+            <input type="hidden" name="productId" value="">
+            <input type="hidden" name="userId" value="10">
+
+            <input type="submit" value="ADICIONAR AO CARRINHO">
+        </form>
+    </div>
+</body>
+</html>

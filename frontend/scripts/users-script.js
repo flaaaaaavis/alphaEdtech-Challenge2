@@ -1,5 +1,5 @@
 const apiURL = 'http://localhost:3000/';
-const userId = [12]
+const userId = 10;
 
 function ValidaCPF(strCPF) {
     var Soma;
@@ -42,8 +42,7 @@ function login() {
         if (response.status !== 200) {
             alert("Falha no login")
         } else {
-            alert("Logado com sucesso")
-            window.location = 'index.html'
+            window.location.assign('../index-logged-in.html');
         }
     });
 }

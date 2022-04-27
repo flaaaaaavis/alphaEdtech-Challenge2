@@ -8,27 +8,35 @@
         <title>de Saco Cheio</title>
     </head>
     <body>
-        <div id="form-cadastro">
+        <form id="form-cadastro">
             <h2>Cadastro de usuário</h2>
+
             <label>Nome</label>
             <input type="text" name="nome" id="nome">
+
             <label>CPF</label>
             <input type="text" name="cpf" id="cpf">
+
             <label>Data nascimento</label>
             <input type="date" name="dtnasc" id="dtnasc">
+
             <label>Senha</label>
             <input type="password" name="senha" id="senha">
+
             <hr>
             <label>Email</label>
             <input type="email" name="email" id="email">
+
             <label>DDD</label>
             <input type="text" name="ddd" id="ddd">
+
             <label>Fone</label>
             <input type="text" name="phone" id="phone">
             
             <!-- chama função para salvar usuario -->
-            <button onclick="saveUser()">Salvar</button>
-        </div>
+            <button type="submit" onclick="saveUser()">Salvar</button>
+        </form>
+
+            <script src="scripts/users-script.js"></script>
     </body>
-    <script src="scripts/users-script.js"></script>
 </html>

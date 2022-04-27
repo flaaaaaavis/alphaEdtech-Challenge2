@@ -108,15 +108,15 @@ app.use(cookieParser())
 
 // Contact
     // CREATE
-            app.post('/createContact', async (req, res) => {
-                const testToken = await sessionControl.validateToken(req, res);
-                if (testToken) {
-                    contactControl.createContact(req, res)
-                } else if(!testToken) {
-                    res.status(401).send({ message:'Log into your account'})}
-                else {
-                    res.status(401).send({ message:'Moiô'}) } 
-                })
+        app.post('/createContact', async (req, res) => {
+            const testToken = await sessionControl.validateToken(req, res);
+            if (testToken) {
+                contactControl.createContact(req, res)
+            } else if(!testToken) {
+                res.status(401).send({ message:'Log into your account'})}
+            else {
+                res.status(401).send({ message:'Moiô'}) } 
+            })
     // READ
         app.get('/readAllContacts', async (req, res) => {
             const testToken = await sessionControl.validateToken(req, res);
@@ -221,7 +221,7 @@ app.use(cookieParser())
         })
     // READ
         app.get('/readAllProducts', async (req, res) => {
-            const testToken = await sessionControl.validateToken(req, res);
+            const testToken = true;
             if (testToken) {
                 productControl.readAllProducts(req, res)
             } else if(!testToken) {
