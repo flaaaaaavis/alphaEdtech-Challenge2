@@ -47,6 +47,20 @@ function login() {
     });
 }
 
+function logout() {
+    fetch(apiURL+'logout', {
+        method: "get",
+        headers: { 'Content-Type': 'application/json' },
+    }).then(response => {
+        console.log(response)
+        if (response.status !== 200) {
+            alert("Falha no login")
+        } else {
+            window.location.assign('../index-logged-in.html');
+        }
+    });
+}
+
 /**
  * função para chamar o endpoint para listar todos os usuarios
  */

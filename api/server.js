@@ -151,6 +151,10 @@ function authToken(req, res, next) {
         app.post('/login', (req, res) => {
             sessionControl.login(req, res)
         })
+    // Logout
+    app.post('/logout', (req, res) => {
+        sessionControl.logout(req, res)
+    })
 
 // User
     // CREATE

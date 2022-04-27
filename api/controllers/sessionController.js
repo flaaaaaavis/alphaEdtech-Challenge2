@@ -67,6 +67,18 @@ class session {
             await pool.query(`COMMIT;`);
         }   
     }
+    async logout(req, res) {
+        const cookieToken = req.cookies.token;
+        try {
+            browser.cookies.remove(
+                cookieToken               // object
+            )
+            res.status(200).send( { message: 'Logged out'} )
+        } catch (err) {
+            console.log(err);
+            res.status(401).send( { message: 'Try again'} ).end();
+        }   
+    }
     // addToCart(req, res) {
     //     const { userId, productId } = req.body;
     //     if(cartControl[userId] === undefined) {
