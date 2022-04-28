@@ -1,57 +1,516 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link rel="stylesheet" href="styles/index.css">
+    <link rel="shortcut icon" href="imgs/grass.png" type="image/x-icon" />
 
-        <title>de Saco Cheio</title>
-    </head>
-    <body>
-        <header>
-            <nav>
-                <img src="imgs/logo.svg" class="logo" />
+    <link rel="stylesheet" href="styles/index.css" />
 
-                <input type="text" placeholder="Buscar">
+    <title>de Saco Cheio</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <img src="imgs/logo.svg" class="logo" />
 
-                <a href="login.html">Entre</a>
-                <a href="createUser.html">Cadastre-se</a>
-                
-                <a href="cart.html">
-                    <img src="imgs/shopping_cart_FILL0_wght400_GRAD0_opsz48.svg">
-                </a>
-            </nav>
-            <menu>
-                <a href="#">Todas categorias</a>
-                <a href="#">Sacolas plásticas</a>
-                <a href="#">Sacolas de papel</a>
-                <a href="#">Sacolas coloridas</a>
-                <a href="#">Sacolas brancas</a>
-            </menu>
-        </header>
+        <input type="text" placeholder="Buscar" />
 
-        <main>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </main>
+        <a href="login.html">Entre</a>
+        <a href="createUser.html">Cadastre-se</a>
 
-        <footer>
-            <img src="imgs/logo.svg" class="logo" />
-            <p>(73) 99164-8297</p>
-            <p>(87) 99619-7287</p>
-            <p>lojavirtual@desacocheio.com.br</p>
-            <p>
-                Horário de funcionamento
-                <br>
-                Segunda a Sexta das 8h as 18h
-            </p>
-        </footer>
+        <a href="cart.html">
+          <img src="imgs/shopping_cart_FILL0_wght400_GRAD0_opsz48.svg" />
+        </a>
+      </nav>
+      <menu>
+        <a href="#">Todas categorias</a>
+        <a href="#">Sacolas plásticas</a>
+        <a href="#">Sacolas de papel</a>
+        <a href="#">Sacolas coloridas</a>
+        <a href="#">Sacolas brancas</a>
+      </menu>
+    </header>
 
-        <script src=""></script>
-    </body>
+    <main>
+      <div id="container-main-content">
+        <div
+          id="carouselIndicators"
+          class="carousel slide"
+          data-ride="carousel"
+        >
+          <ol class="carousel-indicators">
+            <li
+              data-target="#carouselIndicators"
+              data-slide-to="0"
+              class="active"
+            ></li>
+            <li data-target="#carouselIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="d-block w-100 sub-banner" src="./imgs/frame1.svg" />
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="./imgs/frame2.svg" />
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="./imgs/frame3.svg" />
+            </div>
+          </div>
+          <a
+            class="carousel-control-prev"
+            href="#carouselIndicators"
+            role="button"
+            data-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#carouselIndicators"
+            role="button"
+            data-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Próximo</span>
+          </a>
+        </div>
+
+        <div id="info-compra">
+          <div>
+            <img
+              src="imgs/local_shipping_FILL0_wght400_GRAD0_opsz48.svg"
+              alt=""
+            />
+            <div>
+              <p>Enviamos suas compras</p>
+              <p>Entrega em todo país</p>
+            </div>
+          </div>
+
+          <div>
+            <img src="imgs/credit_card_FILL0_wght400_GRAD0_opsz48.svg" alt="" />
+            <div>
+              <p>Pague como quiser</p>
+              <p>Cartões de crédito ou a vista</p>
+            </div>
+          </div>
+
+          <div>
+            <img src="imgs/lock_FILL0_wght400_GRAD0_opsz48.svg" alt="" />
+            <div>
+              <p>Compre com segurança</p>
+              <p>Seus dados sempre protegidos</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="mais-vendidos">
+          <p>Mais vendidos</p>
+          <div
+            id="carouselMaisVendidos"
+            class="carousel slide"
+            data-ride="carousel"
+          >
+            <ol class="carousel-indicators">
+              <li
+                data-target="#carouselMaisVendidos"
+                data-slide-to="0"
+                class="active"
+              ></li>
+              <li data-target="#carouselMaisVendidos" data-slide-to="1"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row-image">
+                  <form class="index-product">
+                    <img
+                      class="d-block w-100 sub-item index-product-image"
+                      src="./imgs/sacola-1.png"
+                      onclick="openProductInfo()"
+                    />
+
+                    <input type="hidden" name="productId" value="" />
+                  </form>
+                  <form class="index-product">
+                    <img
+                      class="d-block w-100 sub-item index-product-image"
+                      src="./imgs/sacola-2.png"
+                      onclick="openProductInfo()"
+                    />
+
+                    <input type="hidden" name="productId" value="" />
+                  </form>
+                  <form class="index-product">
+                    <img
+                      class="d-block w-100 sub-item index-product-image"
+                      src="./imgs/sacola-3.png"
+                      onclick="openProductInfo()"
+                    />
+
+                    <input type="hidden" name="productId" value="" />
+                  </form>
+                  <form class="index-product">
+                    <img
+                      class="d-block w-100 sub-item index-product-image"
+                      src="./imgs/sacola-4.png"
+                      onclick="openProductInfo()"
+                    />
+
+                    <input type="hidden" name="productId" value="" />
+                  </form>
+                  <form class="index-product">
+                    <img
+                      class="d-block w-100 sub-item index-product-image"
+                      src="./imgs/sacola-8.png"
+                      onclick="openProductInfo()"
+                    />
+
+                    <input type="hidden" name="productId" value="" />
+                  </form>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row-image">
+                  <form class="index-product">
+                    <img
+                      class="d-block w-100 sub-item index-product-image"
+                      src="./imgs/sacola-1.png"
+                      onclick="openProductInfo()"
+                    />
+
+                    <input type="hidden" name="productId" value="" />
+                  </form>
+                  <form class="index-product">
+                    <img
+                      class="d-block w-100 sub-item index-product-image"
+                      src="./imgs/sacola-2.png"
+                      onclick="openProductInfo()"
+                    />
+
+                    <input type="hidden" name="productId" value="" />
+                  </form>
+                  <form class="index-product">
+                    <img
+                      class="d-block w-100 sub-item index-product-image"
+                      src="./imgs/sacola-3.png"
+                      onclick="openProductInfo()"
+                    />
+
+                    <input type="hidden" name="productId" value="" />
+                  </form>
+                  <form class="index-product">
+                    <img
+                      class="d-block w-100 sub-item index-product-image"
+                      src="./imgs/sacola-4.png"
+                      onclick="openProductInfo()"
+                    />
+
+                    <input type="hidden" name="productId" value="" />
+                  </form>
+                  <form class="index-product">
+                    <img
+                      class="d-block w-100 sub-item index-product-image"
+                      src="./imgs/sacola-8.png"
+                      onclick="openProductInfo()"
+                    />
+
+                    <input type="hidden" name="productId" value="" />
+                  </form>
+                </div>
+              </div>
+            </div>
+            <a
+              class="carousel-control-prev"
+              href="#carouselMaisVendidos"
+              role="button"
+              data-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Anterior</span>
+            </a>
+            <a
+              class="carousel-control-next"
+              href="#carouselMaisVendidos"
+              role="button"
+              data-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Próximo</span>
+            </a>
+          </div>
+        </div>
+
+        <div id="lancamentos">
+          <p>Lançamentos</p>
+          <div
+            id="carouselLancamentos"
+            class="carousel slide"
+            data-ride="carousel"
+          >
+            <ol class="carousel-indicators">
+              <li
+                data-target="#carouselLancamentos"
+                data-slide-to="0"
+                class="active"
+              ></li>
+              <li data-target="#carouselLancamentos" data-slide-to="1"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row-image">
+                  <img
+                    class="d-block w-100 sub-item-lancamentos"
+                    src="./imgs/sacola-5.png"
+                  />
+                  <img
+                    class="d-block w-100 sub-item-lancamentos"
+                    src="./imgs/sacola-6.png"
+                  />
+                  <img
+                    class="d-block w-100 sub-item-lancamentos"
+                    src="./imgs/sacola-7.png"
+                  />
+                  <img
+                    class="d-block w-100 sub-item-lancamentos"
+                    src="./imgs/sacola-9.png"
+                  />
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row-image">
+                  <img
+                    class="d-block w-100 sub-item-lancamentos"
+                    src="./imgs/sacola-5.png"
+                  />
+                  <img
+                    class="d-block w-100 sub-item-lancamentos"
+                    src="./imgs/sacola-6.png"
+                  />
+                  <img
+                    class="d-block w-100 sub-item-lancamentos"
+                    src="./imgs/sacola-7.png"
+                  />
+                  <img
+                    class="d-block w-100 sub-item-lancamentos"
+                    src="./imgs/sacola-9.png"
+                  />
+                </div>
+              </div>
+            </div>
+            <a
+              class="carousel-control-prev"
+              href="#carouselLancamentos"
+              role="button"
+              data-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Anterior</span>
+            </a>
+            <a
+              class="carousel-control-next"
+              href="#carouselLancamentos"
+              role="button"
+              data-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Próximo</span>
+            </a>
+          </div>
+        </div>
+
+        <div id="ofertas-cupons">
+          <div class="ofertas-cupons-card">
+            <p>Cupons</p>
+            <span class="confira">Confira ></span>
+          </div>
+
+          <div class="ofertas-cupons-card">
+            <p>Ofertas com<br />frete grátis</p>
+            <span class="confira">Confira ></span>
+          </div>
+
+          <div class="ofertas-cupons-card">
+            <p>Produtos com<br />até 50% off</p>
+            <span class="confira">Confira ></span>
+          </div>
+        </div>
+
+        <div id="depoimentos">
+          <p>Depoimentos dos clientes</p>
+          <div id="depoimentos-cards">
+            <div class="depoimento-card">
+              <p class="data-comentario">25/03/2022</p>
+              <p class="comentario">
+                Que ideia brilhante! Este site está de parabéns
+              </p>
+
+              <img
+                class="stars-comentario"
+                src="imgs/stars.png"
+                width="150"
+                height="50"
+              />
+            </div>
+
+            <div class="depoimento-card">
+              <p class="data-comentario">02/03/2022</p>
+              <p class="comentario">Maravilha! Economia é aqui</p>
+
+              <img
+                class="stars-comentario"
+                src="imgs/stars.png"
+                width="150"
+                height="50"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div id="frase-da-loja">
+          <img src="imgs/bins.png" width="100" height="40" />
+          <p>Sua loja de sacos de lixo gourmet</p>
+        </div>
+
+        <div id="cadastro-promocao">
+          <p>Cadastre-se e receba novidades e promoções</p>
+          <div id="cadastro-promo-form">
+            <input type="text" placeholder="Nome" />
+            <input type="text" placeholder="Email" />
+            <button>Enviar</button>
+          </div>
+        </div>
+      </div>
+      <div id="container-login">
+        <form>
+          <h3>Login</h3>
+
+          <label for="email">E-mail:</label>
+          <input type="text" id="email" name="email" maxlength="50" />
+
+          <label for="password">Password:</label>
+          <input type="password" id="senha" name="password" />
+
+          <button onclick="login()">Login</button>
+        </form>
+      </div>
+      <div id="container-create-user">
+        <form id="form-cadastro">
+          <h3>Cadastro de usuário</h3>
+
+          <label>Nome</label>
+          <input type="text" name="nome" id="nome" />
+
+          <label>CPF</label>
+          <input type="text" name="cpf" id="cpf" />
+
+          <label>Data nascimento</label>
+          <input type="date" name="dtnasc" id="dtnasc" />
+
+          <label>Senha</label>
+          <input type="password" name="senha" id="senha" />
+
+          <hr />
+          <label>Email</label>
+          <input type="email" name="email" id="email" />
+
+          <label>DDD</label>
+          <input type="text" name="ddd" id="ddd" />
+
+          <label>Fone</label>
+          <input type="text" name="phone" id="phone" />
+
+          <!-- chama função para salvar usuario -->
+          <button onclick="saveUser()">Salvar</button>
+        </form>
+      </div>
+      <div id="container-cart">
+        <div id="container-cart-content"></div>
+        <div id="container-create-address"></div>
+        <div id="container-payment"></div>
+        <div id="container-shipping"></div>
+      </div>
+      <div id="container-create-product">
+        <div id="drag-drop-area"></div>
+        <div id="form-cadastro">
+          <label for="">Nome:</label>
+          <input type="text" id="name" name="name" />
+
+          <label for="">Descrição:</label>
+          <input type="text" id="description" name="description" />
+
+          <label for="">Modelo:</label>
+          <input type="text" id="model" name="model" />
+
+          <label for="">Valor:</label>
+          <input type="text" id="value" name="value" />
+
+          <input type="hidden" id="userId" value="" />
+
+          <button onclick="saveProduct()">Salvar</button>
+        </div>
+      </div>
+      <div id="container-product-card">
+        <form>
+          <img class="product-card-image" src="imgs/sacola-4.png" />
+          <div class="product-card-description">
+            <h4 class="product-card-name">Nome</h4>
+            <div class="teste">
+              <h5 class="product-card-value">20,00</h5>
+              <h5 class="product-card-model">Boca de palhaço</h5>
+            </div>
+            <div class="teste">
+              <p class="product-card-size">
+                <span class="product-card-width">10</span>
+                x
+                <span class="product-card-height">30</span>
+                x
+                <span class="product-card-depth">5</span>
+              </p>
+
+              <input type="hidden" name="productId" value="" />
+              <input type="hidden" name="userId" value="10" />
+
+              <img
+                class="product-card-btn"
+                src="imgs/add_shopping_cart_FILL0_wght400_GRAD0_opsz48.svg"
+                onclick="addItem()"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <footer>
+      <img src="imgs/logo.svg" class="logo" />
+      <p>(73) 99164-8297</p>
+      <p>(87) 99619-7287</p>
+      <p>lojavirtual@desacocheio.com.br</p>
+      <p>
+        Horário de funcionamento
+        <br />
+        Segunda a Sexta das 8h as 18h
+      </p>
+    </footer>
+
+    <script src="scripts/index.js"></script>
+  </body>
 </html>

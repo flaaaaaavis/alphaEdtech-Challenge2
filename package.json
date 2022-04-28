@@ -28,5 +28,14 @@
   "keywords": [],
   "author": "Flávia Souza",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "eslint": "^8.14.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "stylelint": "^14.8.0",
+    "stylelint-config-standard": "^25.0.0"
+  }
 }
