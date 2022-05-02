@@ -1,6 +1,6 @@
 const pool = require('../database')
 
-class address {
+class Address {
   // Create
   async createAddress (req, res) {
     const productData = [req.body.cep, req.body.estado, req.body.cidade, req.body.bairro, req.body.logradouro, req.body.number]
@@ -79,4 +79,6 @@ class address {
   }
 }
 
-module.exports = address
+const addressControl = new Address()
+
+module.exports = addressControl

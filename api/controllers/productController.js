@@ -1,6 +1,6 @@
 const pool = require('../database')
 
-class product {
+class Product {
   async createProduct (req, res) {
     const productData = [req.body.name, req.body.value, req.body.description, req.body.model, req.body.height, req.body.width, req.body.depth, req.body.userId]
     const transaction = 'BEGIN TRANSACTION'
@@ -19,7 +19,7 @@ class product {
   async readAllProducts (req, res) {
     try {
       const all = await pool.query('SELECT * FROM products WHERE deleted = false')
-      res.json(all.rows)
+      res.send(all.rows)
     } catch (err) {
       console.error(err.message)
     }
@@ -111,4 +111,6 @@ class product {
   }
 }
 
-module.exports = product
+const productControl = new Product()
+
+module.exports = productControl

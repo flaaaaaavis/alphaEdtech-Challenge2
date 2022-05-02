@@ -17,25 +17,24 @@ const storage = multer.diskStorage({
     cb(null, fileName)
   }
 })
-
 const uploadedImage = multer({ storage }).single('photo')
 
 // Controlers
-const Auth = require('./controllers/authController')
-const authControl = new Auth()
-const Address = require('./controllers/addressController')
-const addressControl = new Address()
-const Contact = require('./controllers/contactController')
-const contactControl = new Contact()
-const Product = require('./controllers/productController')
-const productControl = new Product()
+const authControl = require('./controllers/authController')
+const addressControl = require('./controllers/addressController')
+const contactControl = require('./controllers/contactController')
+const productControl = require('./controllers/productController')
 // const sessionController = require('./controllers/sessionController')
-// const sessionControl = new sessionController.Session()
-const User = require('./controllers/userController')
-const userControl = new User()
+// const sessionControl = sessionController.sessionControl
+const userControl = require('./controllers/userController')
 
 app.use(express.urlencoded({ extended: true }))
-app.use(express.static('./frontend'))
+
+app.use('/static', express.static(path.resolve('./frontend', 'static')))
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve('./frontend', 'index.html'))
+})
+
 app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
@@ -50,11 +49,9 @@ function authToken (req, res, next) {
 app.get('/index-logged-in.html', authToken, () => window.location.assign('../index-logged-in.html'))
 
 // Address
-// CREATE
 app.post('/createAddress', authToken, (req, res) => {
   addressControl.createAddress(req, res)
 })
-// READ
 app.get('/readAllAddresses', authToken, (req, res) => {
   addressControl.readAllAddresses(req, res)
 })
@@ -64,21 +61,17 @@ app.get('/readAddressById', authToken, (req, res) => {
 app.get('/readDeletedAddresses', authToken, (req, res) => {
   addressControl.readDeletedAddresses(req, res)
 })
-// UPDATE
 app.put('/updateAddress', authToken, (req, res) => {
   addressControl.updateAddress(req, res)
 })
-// DELETE
 app.put('/deleteAddress', authToken, (req, res) => {
   addressControl.deleteAddress(req, res)
 })
 
 // Contact
-// CREATE
 app.post('/createContact', authToken, (req, res) => {
   contactControl.createContact(req, res)
 })
-// READ
 app.get('/readAllContacts', authToken, (req, res) => {
   contactControl.readAllContacts(req, res)
 })
@@ -88,17 +81,14 @@ app.get('/readContactById', authToken, (req, res) => {
 app.get('/readDeletedContacts', authToken, (req, res) => {
   contactControl.readDeletedContacts(req, res)
 })
-// UPDATE
 app.put('/updateContact', authToken, (req, res) => {
   contactControl.updateContact(req, res)
 })
-// DELETE
 app.put('/deleteContact', authToken, (req, res) => {
   contactControl.deleteContact(req, res)
 })
 
 // Product
-// image
 app.post('/image', uploadedImage, async (req, res) => {
   const testToken = await authControl.validateToken(req, res)
   if (testToken) {
@@ -118,43 +108,35 @@ app.post('/image', uploadedImage, async (req, res) => {
     res.status(401).send({ message: 'Moiô' })
   }
 })
-// Search products
 app.post('/search', async (req, res) => {
   productControl.search(req, res)
 })
 app.post('/search2', async (req, res) => {
   productControl.search2(req, res)
 })
-// CREATE
 app.post('/createProduct', authToken, (req, res) => {
   productControl.createProduct(req, res)
 })
-// READ
-app.get('/readAllProducts', authToken, (req, res) => {
+app.get('/readAllProducts', /*authToken, */(req, res) => {
   productControl.readAllProducts(req, res)
 })
-// Get product page
 app.get('/readProductById', authToken, (req, res) => {
   productControl.readProductById(req, res)
 })
 app.get('/readDeletedProducts', authToken, (req, res) => {
   productControl.readDeletedProducts(req, res)
 })
-// UPDATE
 app.put('/updateProduct', authToken, (req, res) => {
   productControl.updateProduct(req, res)
 })
-// DELETE
 app.put('/deleteProduct', authToken, (req, res) => {
   productControl.deleteProduct(req, res)
 })
 
 // Auth
-// Login
 app.post('/login', (req, res) => {
   authControl.login(req, res)
 })
-// Logout
 app.get('/logout', (req, res) => {
   authControl.logout(req, res)
 })
@@ -162,34 +144,27 @@ app.get('/logout', (req, res) => {
 // Session
 
 // User
-// CREATE
 app.post('/createUser', authToken, (req, res) => {
   userControl.createUser(req, res)
 })
-// READ
 app.get('/readAllUsers', authToken, (req, res) => {
   userControl.readAllUsers(req, res)
 })
 app.get('/readUserById', authToken, (req, res) => {
   userControl.readUserById(req, res)
 })
-// findUser
-// localhost:3000/readUserByName?name=Alvito+Peralta
 app.get('/findUser', authToken, (req, res) => {
   userControl.findUser(req, res)
 })
 app.get('/readUserByCPF', authToken, (req, res) => {
   userControl.readUserByCPF(req, res)
 })
-// Deleted
 app.get('/readDeletedUsers', authToken, (req, res) => {
   userControl.readDeletedUsers(req, res)
 })
-// UPDATE
 app.put('/updateUser', authToken, (req, res) => {
   userControl.updateUser(req, res)
 })
-// DELETE
 app.put('/deleteUser', authToken, (req, res) => {
   userControl.deleteUser(req, res)
 })

@@ -1,6 +1,6 @@
 const pool = require('../database')
 
-class contact {
+class Contact {
   async createContact (req, res) {
     const productData = [req.body.ddd, req.body.phone, req.body.email]
     const transaction = 'BEGIN TRANSACTION'
@@ -73,4 +73,6 @@ class contact {
   }
 }
 
-module.exports = contact
+const contactControl = new Contact()
+
+module.exports = contactControl

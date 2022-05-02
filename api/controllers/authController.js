@@ -4,9 +4,10 @@ const bcrypt = require('bcrypt')
 require('dotenv').config()
 
 const sessionController = require('./sessionController')
-const sessionControl = new sessionController.Session()
+const sessionControl = sessionController.sessionControl
+const table = sessionController.sessionTable
 
-class auth {
+class Auth {
   createToken (_token) {
     const token = jwt.sign({ _token }, process.env.SECRET, {
       expiresIn: '24h'
@@ -36,7 +37,7 @@ class auth {
   async login (req, res) {
     const { email, password } = req.body
     const testToken = await this.validateToken(req, res)
-    console.log(` testoken: ${testToken}`)
+    // console.log(` testoken: ${testToken}`)
     try {
       await pool.query('BEGIN TRANSACTION;')
       const dbEmail = await pool.query(`SELECT * FROM contacts WHERE email = '${email}';`)
@@ -55,11 +56,11 @@ class auth {
               Secure: true,
               overwrite: true
             })
-            res.status(200).send({
-              token: `${token}`,
-              userId: `${dbData.rows[0].user_id}`
-            })
+            sessionControl.createSession(token, dbData.rows[0].user_id)
+            console.log(table)
+            res.sendStatus(200)
           } else if (result) {
+            console.log(table)
             res.status(200).send({ message: 'Valid token. Logged in' })
           } else {
             res.status(401).send({ message: 'Wrong password, try again' })
@@ -91,8 +92,13 @@ class auth {
         console.log(error)
         res.status(401)
       }
+      console.log(table)
+    } else {
+      res.status(401)
     }
   }
 }
 
-module.exports = auth
+const authControl = new Auth()
+
+module.exports = authControl

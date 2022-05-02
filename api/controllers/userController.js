@@ -2,7 +2,7 @@ const pool = require('../database')
 const bcrypt = require('bcrypt')
 require('dotenv').config()
 
-class user {
+class User {
   async createUser (req, res) {
     const { name, cpf, birthdate, email, password, ddd, phone } = req.body
     const saltRounds = 12
@@ -112,4 +112,6 @@ class user {
   }
 }
 
-module.exports = user
+const userControl = new User()
+
+module.exports = userControl

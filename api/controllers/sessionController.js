@@ -13,7 +13,7 @@
 
 const sessionTable = []
 
-class session {
+class Session {
   async createSession (token, userId) {
     sessionTable.push({
       sessionId: `${token}`,
@@ -32,4 +32,6 @@ class session {
   }
 }
 
-module.exports = { session, sessionTable }
+const sessionControl = new Session()
+
+module.exports = { sessionControl, sessionTable }
