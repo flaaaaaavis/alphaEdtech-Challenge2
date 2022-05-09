@@ -31,7 +31,7 @@ const userControl = require('./controllers/userController')
 app.use(express.urlencoded({ extended: true }))
 
 app.use('/static', express.static(path.resolve('./frontend', 'static')))
-app.get('/', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.resolve('./frontend', 'index.html'))
 })
 
@@ -45,8 +45,6 @@ function authToken (req, res, next) {
   if (result) next()
   else res.status(401)
 }
-
-app.get('/index-logged-in.html', authToken, () => window.location.assign('../index-logged-in.html'))
 
 // Address
 app.post('/createAddress', authToken, (req, res) => {
@@ -117,7 +115,7 @@ app.post('/search2', async (req, res) => {
 app.post('/createProduct', authToken, (req, res) => {
   productControl.createProduct(req, res)
 })
-app.get('/readAllProducts', /*authToken, */(req, res) => {
+app.get('/readAllProducts', authToken, (req, res) => {
   productControl.readAllProducts(req, res)
 })
 app.get('/readProductById', authToken, (req, res) => {
